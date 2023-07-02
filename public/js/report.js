@@ -208,6 +208,16 @@ const transport_waste_742 = document.getElementById("transport-waste-742");
 const transport_waste_apa = document.getElementById("transport-waste-apa");
 const transport_waste_beh = document.getElementById("transport-waste-beh");
 
+const over_hour_700 = document.getElementById("over-hour-700");
+const over_hour_742 = document.getElementById("over-hour-742");
+const over_hour_apa = document.getElementById("over-hour-apa");
+const over_hour_beh = document.getElementById("over-hour-beh");
+
+const diff_700 = document.getElementById("diff-700");
+const diff_742 = document.getElementById("diff-742");
+const diff_apa = document.getElementById("diff-apa");
+const diff_beh = document.getElementById("diff-beh");
+
 const seperation_saha_to_cr = document.querySelectorAll("div#saha-report td[id]");
 async function get_report(report_name) {
   start_at = date_input.value;
@@ -286,6 +296,12 @@ report_form.addEventListener("submit", async (event) => {
   if (!extraction) {
     refreshPage();
   }
+  
+  over_hour_700.innerHTML = extraction.extraction_700.over_houres[700].length + "دستگاه ";
+  over_hour_742.innerHTML = extraction.extraction_700.over_houres[742].length + "دستگاه ";
+  over_hour_apa.innerHTML = extraction.extraction_700.over_houres.apa.length + "دستگاه ";
+  over_hour_beh.innerHTML = extraction.extraction_700.over_houres.beh.length + "دستگاه ";
+
   omz_1.innerHTML = extraction.extraction_700.omz_1.toFixed(2);
   omz_2.innerHTML = extraction.extraction_700.omz_2.toFixed(2);
   omz_3.innerHTML = extraction.extraction_700.omz_3.toFixed(2);
@@ -384,8 +400,13 @@ report_form.addEventListener("submit", async (event) => {
   if (!unloading) {
     refreshPage();
   }
+  console.log(unloading);
+  // return
   // console.log({unloading});
-
+  diff_700.innerHTML = unloading.unloading_700.compare;
+  diff_742.innerHTML = unloading.unloading_742.compare;
+  diff_apa.innerHTML = unloading.unloading_Apa.compare;
+  diff_beh.innerHTML = unloading.unloading_Beh.compare;
   mine_to_cr_tonnage_700.innerHTML =
     unloading.unloading_700.ore_mine_to_cr_tonnage;
   mine_to_cr_tonnage_742.innerHTML =

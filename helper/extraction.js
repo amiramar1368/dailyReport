@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 import {jalaliToMiladi} from './toMiladi.js';
-
+const over_houres={700:[],742:[],apa:[],beh:[]}
 export async function extraction_report(start_at,group_id,config){
     var start_at,end_at,truck_start_with;
     start_at = start_at.split("/");
     start_at=end_at = jalaliToMiladi(start_at[0],start_at[1],start_at[2]);
     const {data} = await axios.post("http://192.168.10.20/report/standard/extraction-s11",{start_at,end_at,group_id},config);
+
     var omz_1=0;
     var omz_2=0;
     var omz_3=0;
@@ -100,6 +101,23 @@ export async function extraction_report(start_at,group_id,config){
     group_id!=1? truck_start_with="TA":truck_start_with="T";
 
     for (let i = 0; i < data.length; i++) {
+        if(group_id==1){
+            if(data[i].worktime/3600>18.99){
+                over_houres[700].push(data[i])
+            }
+        }else if(group_id==3){
+            if(data[i].worktime/3600>17.99){
+                over_houres[742].push(data[i])
+            }
+        }else  if(group_id==6){
+            if(data[i].worktime/3600>17.99){
+                over_houres.beh.push(data[i])
+            }
+        }else  if(group_id==7){
+            if(data[i].worktime/3600>18.5){
+                over_houres.apa.push(data[i])
+            }
+        }
         // تراک
     if(data[i].vehicle_name.startsWith(truck_start_with)) {
         if(data[i].vehicle_name=="TA-HD325-11" || data[i].vehicle_name=="TIT600-1" || data[i].vehicle_name=="TIT600-2"){
@@ -110,9 +128,6 @@ export async function extraction_report(start_at,group_id,config){
             truck_distance +=distance; 
         }
     } 
-
-
-
     // شاول
     if(group_id==1){
 
@@ -289,6 +304,7 @@ export async function extraction_report(start_at,group_id,config){
         titon_2,
         di550_1,
         di550_2,
-        di550_3
+        di550_3,
+        over_houres
     }
 }
