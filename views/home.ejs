@@ -1,0 +1,23 @@
+
+ <hr>
+    <%-include("proximity.ejs")  %> 
+    <%-include("fuel.ejs")  %> 
+    <%-include("doneReport.ejs")  %> 
+    <%-include("detailLogger.ejs")  %> 
+ <div class="showOrHide" id="services">
+    <button class="btn btn-primary mb-3 changeReport" onclick="changeReportType()"  >نمایش خروج از شاولهای نزدیک به هم</button>
+    <h2 style="margin-right: 25%;"> موارد نیاز به بررسی در قرارداد <span id="group_shift" style="color:green ;"> ... ...</span>  - - - تاریخ : <span id="date">  </span></h2>
+    <table class="table table-striped table-hover" style="margin: auto ;margin-top: 70px; width: 95% ; background-color: rgb(214, 214, 212);">
+      <tr style="background-color: rgb(158, 156, 154);">
+          <th scope="col">ردیف</th>
+          <th scope="col">تراک</th>
+          <th scope="col">خروج از تخلیه قبلی</th>
+          <th scope="col">خروج از شاول</th>
+          <th scope="col">فاصله دو سرویس (دقیقه)</th>
+          <th scope="col">توضیحات</th>
+          <th scope="col">بلوک قبل</th>
+          <th scope="col">بلوک بعد</th>
+      </tr>
+    <tbody id="service"></tbody>
+    </table>
+</div>

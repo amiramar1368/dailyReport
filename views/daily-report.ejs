@@ -1,0 +1,663 @@
+<style>
+   .columns{
+     border: 2px solid #eee;
+     margin:5px 20px 5px 20px;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 2px;
+     height: 85vh;
+     overflow: scroll;
+ 
+   }
+   .cards{
+     border: 2px solid #d7d5d5;
+     background-color: rgb(247, 247, 246);
+     flex: 1 0 100px;
+   }
+   table{
+     text-align: right;
+   }
+ 
+   td[id],th[id]{
+     border-right: 1px dashed #c9c5c5;
+     text-align: center;
+     font-weight: bold;
+   }
+ 
+ body{
+   background-color: #faf7f7;
+ }
+ 
+ 
+  </style>
+
+   <div id="main-report" class="columns">
+     <div class="cards">
+       <table class="table table-striped table-hover">
+         <thead>
+             <th>پارامتر</th>
+             <th id="val">مقدار</th>
+         </thead>
+         <tbody>
+             <tr>
+             <td>ساعت omz-1</td>
+             <td id="omz-1"></td>
+             </tr>
+             <tr>
+             <td>ساعت omz-2</td>
+             <td id="omz-2"></td>
+             </tr>
+             </tr>
+             <td>ساعت omz-3</td>
+             <td id="omz-3"></td>
+             </tr>
+             <td>ساعت DMH-1</td>
+             <td id="dmh-1"></td>
+             </tr>
+             </tr>
+             <td>ساعت DMH-2</td>
+             <td id="dmh-2"></td>
+             </tr>
+             </tr>
+             <td>ساعت DI550-1</td>
+             <td id="di550-1"></td>
+             </tr>
+             </tr>
+             <td>ساعت DI550-2</td>
+             <td id="di550-2"></td>
+             </tr>
+             </tr>
+             <td>ساعت DI550-3</td>
+             <td id="di550-3"></td>
+             </tr>
+             </tr>
+             <td>ساعت TITON-1</td>
+             <td id="titon-1"></td>
+             </tr>
+             </tr>
+             <td>ساعت TITON-2</td>
+             <td id="titon-2"></td>
+             </tr>
+             <tr>
+             <td>ساعت تراک 700</td>
+             <td id="truck700-hour"></td>
+             </tr>
+             <tr>
+             <td>ساعت تراک 742</td>
+             <td id="truck742-hour"></td>
+             </tr>
+             <tr>
+             <td>ساعت تراک بهاوند</td>
+             <td id="truck-beh-hour"></td>
+             </tr>
+             <tr>
+             <td>ساعت تراک آپادانا</td>
+             <td id="truck-apa-hour"></td>
+             </tr>
+             <tr>
+             <td>کیلومتر تراک 700</td>
+             <td id="truck700-dis"></td>
+             </tr>
+             <tr>
+             <td>کیلومتر تراک 742</td>
+             <td id="truck742-dis"></td>
+             </tr>
+             <tr>
+             <td>کیلومتر تراک بهاوند</td>
+             <td  id="truck-beh-dis"></td>
+             </tr>
+             <tr >
+             <td>کیلومتر تراک آپادانا</td>
+             <td id="truck-apa-dis"></td>
+             </tr>
+             <tr>
+             <td>ساعت شاول 700</td>
+             <td id="shovel-700-hour"></td>
+             </tr>
+            
+             <tr>
+             <td>ساعت شاول 742</td>
+             <td id="shovel-742-hour"></td>
+             </tr>
+             <tr>
+             <td >ساعت شاول بهاوند</td>
+             <td id="shovel-beh-hour"></td>
+             </tr>
+             <tr>
+             <td>ساعت شاول آپادانا</td>
+             <td id="shovel-apa-hour"></td>
+             </tr>
+             <tr>
+             <td>تعداد تراک 700</td>
+             <td id="truck-700-number"></td>
+             </tr>
+             <tr>
+             <td>تعداد تراک 742</td>
+             <td id="truck-742-number"></td>
+             </tr>
+             <tr>
+             <td>تعداد تراک بهاوند</td>
+             <td id="truck-beh-number"></td>
+             </tr>
+             <tr>
+             <td>تعداد تراک آپادانا</td>
+             <td id="truck-apa-number"></td>
+             </tr>
+             <tr>
+             <td>تعداد شاول 700</td>
+             <td id="shovel-700-number"></td>
+             </tr>
+             <tr>
+             <td>تعداد شاول 742</td>
+             <td id="shovel-742-number"></td>
+             </tr>
+             <tr>
+             <td>تعداد شاول بهاوند</td>
+             <td id="shovel-beh-number"></td>
+             </tr>
+             <tr>
+             <td>تعداد شاول آپادانا</td>
+             <td id="shovel-apa-number"></td>
+             </tr>
+             <tr>
+             <td>ساعت دریلریگ</td>
+             <td id="drillrig-hour"></td>
+             </tr>
+             <tr>
+             <td>ساعت دریل واگن</td>
+             <td id="drillwagon-hour"></td>
+             </tr>  
+             <tr>
+             <td>تناژ سنگ شکن 700</td>
+             <td id="700-mine-to-cr-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ سنگ شکن 742</td>
+             <td id="742-mine-to-cr-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ سنگ شکن بهاوند</td>
+             <td id="beh-mine-to-cr-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ سنگ شکن آپادانا</td>
+             <td id="apa-mine-to-cr-tonnage"></td>
+             </tr>  
+             <tr>
+             <td>تناژ لودر</td>
+             <td id="loader-tonnage"></td>
+             </tr>
+             <tr>
+             <td>ساعت لودر</td>
+             <td id="loader-hour"></td>
+             </tr>            
+         </tbody>
+     </table>
+     </div>
+ 
+     <div class="cards">
+       <table class="table table-striped table-hover">
+         <thead>
+             <th>پارامتر</th>
+             <th id="val">مقدار</th>
+         </thead>
+         <tbody>
+           <tr>
+           <td>موجودی مگنت</td>
+           <td id="magnet-depo"></td>
+           </tr>
+           <tr>
+           <td>موجودی سایر دپوها</td>
+           <td id="other-depo"></td>
+           </tr>
+           <tr>
+           <td>موجودی رباط</td>
+           <td id="robat-depo"></td>
+           </tr>
+           <tr>
+           <td>موجودی نوین</td>
+           <td id="novin-depo"></td>
+           </tr>
+         <tr>
+         <td>تعداد OMZ</td>
+         <td id="omz-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد DMH</td>
+         <td id="dmh-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد DI550</td>
+         <td id="di550-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد TITON 600</td>
+         <td id="titon-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد آبپاش</td>
+         <td id="sprinkler-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد لودر</td>
+         <td id="loader-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد بولدوزر CAT</td>
+         <td id="bull-cat-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد بولدوزر KOMATSU</td>
+         <td id="bull-komatsu-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد ویلدوزر</td>
+         <td id="wheel-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد گریدر 16G</td>
+         <td id="16g-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد گریدر G705A</td>
+         <td id="g705-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد خرج گذار</td>
+         <td id="anfo-number"></td>
+         </tr>
+         <tr>
+         <td>تعداد گل گذار</td>
+         <td id="stemming-number"></td>
+         </tr>
+         <tr>
+         <td>ساعت آبپاش</td>
+         <td id="sprinkler-hour"></td>
+         </tr>
+         <tr>
+         <td>کیلومتر آبپاش</td>
+         <td id="sprinkler-dis"></td>
+         </tr>
+         <tr>
+         <td>ساعت سوخت رسان</td>
+         <td id="fuel-hour"></td>
+         </tr>
+         <td>کیلومتر سوخت رسان</td>
+         <td id="fuel-dis"></td>
+         </tr>
+         <tr>
+         <td>ساعت بولدوزر</td>
+         <td id="bull-hour"></td>
+         </tr>
+         <tr>
+         <td>ساعت ویلدوزر</td>
+         <td id="wheel-hour"></td>
+         </tr>
+         <tr>
+         <td>ساعت گریدر</td>
+         <td id="grader-hour"></td>
+         </tr>
+         <tr>
+         <td>ساعت خرج گذار</td>
+         <td id="anfo-hour"></td>
+         </tr>
+         <tr>
+         <td>ساعت گل گذار</td>
+         <td id="stemming-hour"></td>
+         </tr> 
+         <tr>
+         <td>توقفات شاول 700</td>
+         <td id="stop-shovel"></td>
+         </tr>
+         <tr>
+         <td>توقفات تراک 700</td>
+         <td id="stop-truck"></td>
+         </tr>  
+         <tr>
+         <td>آخرین نمونه پایل</td>
+         <td id="last-sample"></td>
+         </tr>
+         <tr>
+         <td>Fe</td>
+         <td id="pile-fe"></td>
+         </tr>
+         <tr>
+         <td>P</td>
+         <td id="pile-p"></td>
+         </tr>
+         <tr>
+         <td>Feo</td>
+         <td id="pile-feo"></td>
+         </tr>
+         <tr>
+         <td>M</td>
+         <td id="pile-m"></td>
+         </tr>
+         <tr>
+           <td>توقفات سنگ شکن</td>
+           <td id="crusher-stop"></td>
+           </tr>
+           <tr>
+           <td>تأخیر تراک</td>
+           <td id="truck-stop"></td>
+           </tr>
+           <tr>
+           <td>تأخیر شاول و لودر</td>
+           <td id="shovel-stop"></td>
+           </tr>
+           <tr>
+           <td>سنگ شکن فعال</td>
+           <td id="active-cr"></td>
+           </tr>
+         </tbody>
+     </table>
+     </div>
+ 
+     <div class="cards">
+       <table class="table table-striped table-hover">
+         <thead>
+             <th>پارامتر</th>
+             <th id="val">مقدار</th>
+         </thead>
+         <tbody> 
+             <tr>
+             <td>تناژ آهن به مگنت 700</td>
+             <td id="700-mine-to-magnet"></td>
+             </tr>
+             <tr>
+             <td>تناژ آهن به مگنت 742</td>
+             <td id="742-mine-to-magnet"></td>
+             </tr>
+             <tr>
+             <td>تناژ آهن به مگنت بهاوند</td>
+             <td id="beh-mine-to-magnet"></td>
+             </tr>
+             <tr>
+             <td>تناژ آهن به مگنت آپادانا</td>
+             <td id="apa-mine-to-magnet"></td>
+             </tr>   
+             <tr>
+             <td>تناژ آهن راهسازی 700</td>
+             <td id="700-mine-to-road"></td>
+             </tr>
+             <tr>
+             <td>تناژ آهن راهسازی 742</td>
+             <td id="742-mine-to-road"></td>
+             </tr>
+             <tr>
+             <td>تناژ آهن راهسازی بهاوند</td>
+             <td id="beh-mine-to-road"></td>
+             </tr>
+             <tr>
+             <td>تناژ آهن راهسازی آپادانا</td>
+             <td id="apa-mine-to-road"></td>
+             </tr>    
+             <tr>
+             <td>تناژ باطله شرقی 700</td>
+             <td id="700-east-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ باطله شرقی 742</td>
+             <td id="742-east-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ باطله شرقی بهاوند</td>
+             <td id="beh-east-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ باطله شرقی آپادانا</td>
+             <td id="apa-east-tonnage"></td>
+             </tr> 
+             <tr>
+             <td>تناژ باطله غربی 700</td>
+             <td id="700-west-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ باطله غربی 742</td>
+             <td id="742-west-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ باطله غربی بهاوند</td>
+             <td id="beh-west-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ باطله غربی آپادانا</td>
+             <td id="apa-west-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ باطله راهسازی 700</td>
+             <td id="700-waste-road-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ باطله راهسازی 742</td>
+             <td id="742-waste-road-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ باطله راهسازی بهاوند</td>
+             <td id="beh-waste-road-tonnage"></td>
+             </tr>
+             <tr>
+             <td>تناژ باطله راهسازی آپادانا</td>
+             <td id="apa-waste-road-tonnage"></td>
+             </tr>
+             
+               <tr>
+               <td>ترانسپورت -دپو 700</td>
+               <td id="transport-depo-700"></td>
+               </tr>
+               <tr>
+               <td>ترانسپورت -آهن 700</td>
+               <td id="transport-ore-700"></td>
+               </tr>
+               <tr>
+               <td>ترانسپورت -آهن 742</td>
+               <td id="transport-ore-742"></td>
+               </tr>
+               <tr>
+               <td>ترانسپورت -آهن آپادانا</td>
+               <td id="transport-ore-apa"></td>
+               </tr>
+               <tr>
+               <td>ترانسپورت -آهن بهاوند</td>
+               <td id="transport-ore-beh"></td>
+               </tr>
+               <tr>
+               <td>ترانسپورت - باطله 700</td>
+               <td id="transport-waste-700"></td>
+               </tr>
+               <tr>
+               <td>ترانسپورت - باطله 742</td>
+               <td id="transport-waste-742"></td>
+               </tr>
+               <tr>
+               <td>ترانسپورت - باطله آپادانا</td>
+               <td id="transport-waste-apa"></td>
+               </tr>
+               <tr>
+               <td>ترانسپورت - باطله بهاوند</td>
+               <td id="transport-waste-beh"></td>
+               </tr>
+               <tr>
+                 <td>آبرفت 700</td>
+                 <td id="abroft-700"></td>
+                 </tr>
+                 <tr>
+                 <td>آبرفت 742</td>
+                 <td id="abroft-742"></td>
+                 </tr>
+                 <tr>
+                 <td>آبرفت بهاوند</td>
+                 <td id="abroft-beh"></td>
+                 </tr>
+                 <tr>
+                 <td>آبرفت آپادانا</td>
+                 <td id="abroft-apa"></td>
+                 </tr>
+                 <tr>
+                   <td>سرویس تخلیه شده در CR</td>
+                   <td id="crusher-service"></td>
+                   </tr>
+                 
+         </tbody>
+     </table>
+     </div>
+ 
+     <div class="cards">
+         <table class="table table-striped table-hover">
+             <thead>
+                 <th>پارامتر</th>
+                 <th id="val">مقدار</th>
+             </thead>
+             <tbody>
+                 <tr>
+                 <td>تناژ دپو مگنت به سنگ شکن</td>
+                 <td id="depo-magnet-to-cr"></td>
+                 </tr>
+                 <tr>
+                 <td>تناژ دپو اکسید به سنگ شکن</td>
+                 <td id="depo-oxide-to-cr"></td>
+                 </tr>
+                 <tr>
+                 <td>تناژ دپو رباط به سنگ شکن</td>
+                 <td id="depo-robat-to-cr"></td>
+                 </tr>
+                 <tr>
+                 <td>تناژ دپو نوین به سنگ شکن</td>
+                 <td id="depo-novin-to-cr"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه رباط</td>
+                 <td id="robat-daily"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه ارجان</td>
+                 <td id="arjan-daily"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه نوین</td>
+                 <td id="novin-daily"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه گلمنده</td>
+                 <td id="galmande-daily"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه پولاد</td>
+                 <td id="poolad-daily"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه کارمانیا -کاشان</td>
+                 <td id="karmania-kashan-daily"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه چاه گز</td>
+                 <td id="chah-gaz-daily"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه سها شرقی دپو</td>
+                 <td id="saha-east-depo-daily"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه سها  شرقی سنگ شکن</td>
+                 <td id="saha-east-cr-daily"></td>
+                 </tr>
+                 <tr>
+                   <td>ورودی روزانه سها غربی دپو</td>
+                   <td id="saha-west-depo-daily"></td>
+                   </tr>
+                   <tr>
+                   <td>ورودی روزانه سها  غربی سنگ شکن</td>
+                   <td id="saha-west-cr-daily"></td>
+                   </tr>
+                 <tr>
+                 <td>ورودی ماهانه رباط</td>
+                 <td id="robat-monthly"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی ماهانه ارجان</td>
+                 <td id="arjan-monthly"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی ماهانه نوین</td>
+                 <td id="novin-monthly"></td>
+                 </tr>
+                 <tr>
+                   <td>ورودی ماهانه گلمنده</td>
+                   <td id="galmande-monthly"></td>
+                   </tr>
+                 <tr>
+                 <td>ورودی ماهانه پولاد</td>
+                 <td id="poolad-monthly"></td>
+                 </tr>
+                 <tr>
+                   <td>ورودی ماهانه کارمانیا -کاشان</td>
+                   <td id="karmania-kashan-monthly"></td>
+                   </tr>
+                 <tr>
+                 <td>ورودی ماهانه چاه گز</td>
+                 <td id="chah-gaz-monthly"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی ماهانه سها شرقی دپو</td>
+                 <td id="saha-east-depo-monthly"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی ماهانه سها شرقی سنگ شکن</td>
+                 <td id="saha-east-cr-monthly"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی ماهانه سها غربی دپو</td>
+                 <td id="saha-west-depo-monthly"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی ماهانه سها غربی سنگ شکن</td>
+                 <td id="saha-west-cr-monthly"></td>
+                 </tr>
+                 <tr>
+                 <td>تخلف سرعت 700</td>
+                 <td id="speed-700"></td>
+                 </tr>
+                 <tr>
+                 <td>تخلف سرعت 742</td>
+                 <td id="speed-742"></td>
+                 </tr>
+                 <tr>
+                 <td>تخلف سرعت آپادانا</td>
+                 <td id="speed-apa"></td>
+                 </tr>
+                 <tr>
+                 <td>تخلف سرعت بهاوند</td>
+                 <td id="speed-beh"></td>
+                 </tr>
+                 <tr>
+                 <td>زمان تخلف سرعت 700</td>
+                 <td id="speed-duration-700"></td>
+                 </tr>
+                 <tr>
+                 <td>زمان تخلف سرعت 742</td>
+                 <td id="speed-duration-742"></td>
+                 </tr>
+                 <tr>
+                 <td>زمان تخلف سرعت آپادانا</td>
+                 <td id="speed-duration-apa"></td>
+                 </tr>
+                 <tr>
+                 <td>زمان تخلف سرعت بهاوند</td>
+                 <td id="speed-duration-beh"></td>
+                 </tr>
+                 
+                   <tr>
+                   <td>شماره پایل</td>
+                   <td id="pile-number"></td>
+                   </tr>
+                   <tr>
+                   <td>تعداد سرویس دپو به کراشر</td>
+                   <td id="depo-to-cr"></td>
+                   </tr>
+             </tbody>
+         </table>
+     </div>
+ </div>
+ <%-include("./saha.ejs")%>
+ 
+ 

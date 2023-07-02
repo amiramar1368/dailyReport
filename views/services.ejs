@@ -1,0 +1,57 @@
+
+<%-include("proximity.ejs")%>
+<div class="showOrHide">
+  <h2> موارد نیاز به بررسی در قرارداد <span style="color:green ;"><%=group%> <%=shift%> </span>  - - - دقت بررسی : <span style="color:blue" ><% if(accuracy==2){%>
+    زیاد
+  <% }else if(accuracy==3) {%>
+    متوسط
+    <%} else if(accuracy==4) {%>
+      کم
+      <% } else{%>
+        خیلی کم
+        <% } %>%> 
+  </span><span> - - - تاریخ : <%=jalaliDate  %> </span>  </h2>
+  <p> تمامی موارد بررسی شوند ولی سطور رنگی نیاز به دقت بیشتری دارند</p>
+  <div id="change" style="margin-left:55px ;">
+    <table class="table" style="margin: 30px; ;">
+        <tr style="margin: auto ;margin-top: 70px; width: 95% ; background-color: beige;">
+          <th scope="col">ردیف</th>
+            <th scope="col">تراک</th>
+            <th scope="col">خروج از تخلیه قبلی</th>
+            <th scope="col">خروج از شاول</th>
+            <th scope="col">فاصله دو سرویس (دقیقه)</th>
+            <th scope="col">توضیحات</th>
+            <th scope="col">بلوک قبل</th>
+            <th scope="col">بلوک بعد</th>
+        </tr>  
+    </table>
+  </div>
+</div>
+
+<script>
+    jalaliDatepicker.startWatch({
+    minDate: "attr",
+    maxDate: "attr"
+  }); 
+</script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/leaflet/leaflet.js"></script>
+<script src="js/leaflet/leaflet-src.js"></script>
+<script src="js/leaflet/leaflet-routing-machine.min.js"></script>
+<script src="js/axios.js"></script>
+<script src="js/route-report.js"></script>
+<script src="js/sort.js"></script>
+<script src="js/edit_service.js"></script>
+<script>
+  
+const td = document.getElementsByClassName("test");
+const showOrHide = document.querySelectorAll(".showOrHide");
+for(let i=0; i<td.length ; i++){
+td[i].parentElement.style.backgroundColor = '#e9b770'
+}
+function changeReportType(){
+for(let i=0 ; i<showOrHide.length ; i++){
+showOrHide[i].classList.toggle("hide")
+}
+}
+</script>

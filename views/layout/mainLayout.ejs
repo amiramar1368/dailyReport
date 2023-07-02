@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>سرویسهای نیاز به بررسی</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+  <link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="css/jalali.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+  <style>
+    body{
+      background-color: rgb(228, 226, 226) !important;
+    }
+    .container-fluid{
+      direction: rtl;
+    }
+    .img-size{
+      width: 100% !important;
+      height: 92vh;
+      /* height: 800px; */
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 container-fluid">
+        <div class="container-fluid">
+        <form id="check_service_form" enctype="multipart/form-data">
+          <div class="col-xs-6" style="margin-top: 23px;">
+            <input style="margin-left: 20px ;" class="btn btn-primary" type="submit" value="نمایش موارد نیاز به بررسی" name="file">
+            <a id="get_fuel_data" class="btn btn-primary">گزارش سوخت</a>
+            <%if(can_access){%>
+            <a id="done_report" class="btn btn-primary"> گزارش بررسی های انجام شده</a>
+            <a href="/Report" id="daily-Report" class="btn btn-info">گزارش روزانه</a>
+            <% } %> 
+          </div>
+            <div class="col-xs-6">
+              <div class="form-group col-md-3">
+              <label for="jalali">تاریخ</label>
+              <input class="form-control" type="text" name="report_at" id="jalali"  data-jdp data-jdp-max-date="today" placeholder="تاریخ " />
+             </div>
+        
+              <div class="form-group col-md-3">
+              <label for="accuracy">دقت بررسی</label>
+              <select id="accuracy" class="form-control" name="accuracy">
+                <option selected disabled value="">دقت بررسی</option>
+                <option value=6>خیلی کم</option>
+                <option value=4>کم</option>
+                <option value=3>متوسط</option>
+                <option value=2>زیاد</option>
+              </select>
+              </div>
+
+               <div class="form-group col-md-3">
+               <label for="shift">شیفت</label>
+               <select id="shift" class="form-control" name="shift">
+                <option selected disabled value="">شیفت</option>
+                <option value="1">صبح</option>
+                <option value="2">عصر</option>
+                <option value="3">شب</option>
+              </select>
+               </div>
+
+              <div class="form-group col-md-3">
+               <label for="group">گروه کاری</label>
+               <select id="group" class="form-control" name="group_id">
+                <option selected disabled value="">گروه کاری</option>
+                <option value="1">مجتمع</option>
+                <option value="3">742</option>
+                <option value="7">آپادانا</option>
+                <option value="6">بهاوند</option>
+               </select>
+            </div>
+          </div>
+        </form>
+     </div>
+    </div>
+
+    <div class="col-xs-12">
+      <%-body  %> 
+    </div>
+
+   
+  </div>
+</div>
+
+</body>
+</html>
+    <script src="js/axios.js"></script>
+    <script src="js/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+    <script src="js/jalali.js"></script>
+    <script src="js/sort.js"></script>
+    <script src="js/route-report.js"></script>
+    <script src="js/detailLogger.js"></script>
+    <script>
+        jalaliDatepicker.startWatch({
+        minDate: "attr",
+        maxDate: "attr"
+    }); 
+    </script>
+
