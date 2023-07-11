@@ -1,0 +1,50 @@
+ <style>
+  .columns{
+    border: 2px solid #eee;
+    margin:5px 20px 5px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    height: 85vh;
+    overflow: scroll;
+
+  }
+  .cards{
+    border: 2px solid #d7d5d5;
+    background-color: rgb(247, 247, 246);
+    flex: 1 0 100px;
+  }
+  table{
+    text-align: right;
+  }
+
+  td[id],th[id]{
+    border-right: 1px dashed #c9c5c5;
+    text-align: center;
+    font-weight: bold;
+  }
+
+body{
+  background-color: #faf7f7;
+}
+#saha-sample-report{
+  width: 98%;
+}
+
+ </style>
+ 
+  <div id="saha-sample-report" class="columns d-none mx-auto">
+    <div class="cards">
+      <table class="table table-striped table-hover">
+        <thead>
+            <th>#</th>
+            <th>شماره نمونه</th>
+            <th>ساعت</th>
+            <th id="val">تعداد سرویس</th>
+        </thead>
+        
+        <tbody id="saha-sample-table" ></tbody>
+    </table>
+    </div>
+</div>
+

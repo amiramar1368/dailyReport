@@ -1,6 +1,9 @@
 const main_report = document.getElementById("main-report");
 const saha_report = document.getElementById("saha-report");
 const saha_btn = document.getElementById("saha");
+const saha_sample_report = document.getElementById("saha-sample-report");
+const saha_sample_btn = document.getElementById("saha-sample");
+const saha_sample_table = document.getElementById("saha-sample-table");
 const date_input = document.getElementById("jalali");
 const pile_number = document.getElementById("pile-number");
 const report_form = document.getElementById("report-form");
@@ -251,6 +254,7 @@ function refreshPage() {
   search.classList.toggle("d-none");
   main_report.classList.remove("d-none");
   saha_report.classList.add("d-none");
+  saha_sample_report.classList.add("d-none");
 }
 
 function countDown(time) {
@@ -270,6 +274,7 @@ report_form.addEventListener("submit", async (event) => {
   event.preventDefault();
   main_report.classList.remove("d-none");
   saha_report.classList.add("d-none");
+  saha_sample_report.classList.add("d-none");
 
   for (let i = 0; i < td.length; i++) {
     td[i].innerHTML = "";
@@ -282,7 +287,7 @@ report_form.addEventListener("submit", async (event) => {
   start_at = date_input.value;
   // let pile;
 
-  
+
 
   const { data: pile } = await axios.post("/report/pile", { start_at });
   if (pile.length < 1 || pile.length > 2) {
@@ -296,7 +301,7 @@ report_form.addEventListener("submit", async (event) => {
   if (!extraction) {
     refreshPage();
   }
-  
+
   over_hour_700.innerHTML = extraction.extraction_700.over_houres[700].length + "دستگاه ";
   over_hour_742.innerHTML = extraction.extraction_700.over_houres[742].length + "دستگاه ";
   over_hour_apa.innerHTML = extraction.extraction_700.over_houres.apa.length + "دستگاه ";
@@ -400,9 +405,7 @@ report_form.addEventListener("submit", async (event) => {
   if (!unloading) {
     refreshPage();
   }
-  console.log(unloading);
-  // return
-  // console.log({unloading});
+
   diff_700.innerHTML = unloading.unloading_700.compare;
   diff_742.innerHTML = unloading.unloading_742.compare;
   diff_apa.innerHTML = unloading.unloading_Apa.compare;
@@ -487,11 +490,63 @@ report_form.addEventListener("submit", async (event) => {
 
   const { data: weighbridge } = await axios.post("/report/weighbridge", {
     start_at,
-    pile:918,
+    pile: 918,
   });
   if (!weighbridge) {
     refreshPage();
   }
+  const { data: samples } = await axios.post("/report/samples", {
+    start_at,
+  });
+  if (!samples) {
+    refreshPage();
+  }
+  const east_saha_to_cr = weighbridge.weighbridge_east_saha_to_cr.east_saha_to_cr;
+  const west_saha_to_cr = weighbridge.weighbridge_west_saha_to_cr.west_saha_to_cr;
+  const all_saha_cr = [...east_saha_to_cr, ...west_saha_to_cr];
+  const sample_detail = {};
+
+  for (let i = 0; i < samples.length; i++) {
+    let code = samples[i].piling_code;
+    sample_detail[code] = { start: "", end: "", services: [] };
+    if (samples[i - 1]) {
+      sample_detail[code].start = (new Date("0000 " + samples[i - 1].sample_time));
+    } else {
+      sample_detail[code].start = (new Date("0000 07:00:01"));
+    }
+    sample_detail[code].end = new Date("0000 " + samples[i].sample_time);
+  }
+
+  for (const item of all_saha_cr) {
+    const time = new Date("0000 " + item.first_time);
+    for (const elem in sample_detail) {
+      if (time >= sample_detail[elem].start && time <= sample_detail[elem].end) {
+        sample_detail[elem].services.push(item);
+        continue;
+      } else if (sample_detail[elem].start > sample_detail[elem].end) {
+        if (time >= sample_detail[elem].start || time <= sample_detail[elem].end) {
+          sample_detail[elem].services.push(item);
+        }
+      }
+    }
+  }
+  saha_sample_table.innerHTML = "";
+  let html = "";
+  let num = 1;
+  for (const item in sample_detail) {
+    let time = (sample_detail[item].end).toLocaleTimeString();
+    let services = sample_detail[item].services.length;
+    html += `
+    <tr>
+       <td>${num}</td>
+       <td>${item}</td>
+       <td>${time}</td>
+       <td>${services}</td>
+    </tr>
+    `
+    num++;
+  }
+  saha_sample_table.innerHTML = html;
   robat_daily.innerHTML = weighbridge.weighbridge_robat.daily_tonnage;
   arjan_daily.innerHTML = weighbridge.weighbridge_arjan.daily_tonnage;
   poolad_daily.innerHTML = weighbridge.weighbridge_poolad.daily_tonnage;
@@ -526,17 +581,17 @@ report_form.addEventListener("submit", async (event) => {
   saha_west_cr_monthly.innerHTML =
     weighbridge.weighbridge_west_saha_to_cr.monthly_tonnage;
 
-    // seperation_saha_to_cr
-const saha_east = weighbridge.weighbridge_east_saha_to_cr.seperation_east_saha_to_cr;
-const saha_west = weighbridge.weighbridge_west_saha_to_cr.seperation_west_saha_to_cr;
+  // seperation_saha_to_cr
+  const saha_east = weighbridge.weighbridge_east_saha_to_cr.seperation_east_saha_to_cr;
+  const saha_west = weighbridge.weighbridge_west_saha_to_cr.seperation_west_saha_to_cr;
 
 
-for (let i = 0; i <= 24; i++) {
-    const number = Number(saha_east[i])+Number(saha_west[i]);
-    if(i!=24){
-        seperation_saha_to_cr[i].innerHTML = number;
+  for (let i = 0; i <= 24; i++) {
+    const number = Number(saha_east[i]) + Number(saha_west[i]);
+    if (i != 24) {
+      seperation_saha_to_cr[i].innerHTML = number;
     }
-}
+  }
 
   const { data: depo } = await axios.post("/report/depo", { start_at, pile });
   if (!depo) {
@@ -572,7 +627,7 @@ for (let i = 0; i <= 24; i++) {
   if (!lab) {
     refreshPage();
   }
-//   separation
+  //   separation
   last_sample.innerHTML = lab.last_sample;
   pile_Fe.innerHTML = Number(lab.average.fe).toFixed(2);
   pile_M.innerHTML = Number(lab.average.m).toFixed(2);
@@ -620,11 +675,28 @@ for (let i = 0; i <= 24; i++) {
   span_counter.classList.remove("d-none");
 });
 
-saha_btn.addEventListener("click",()=>{
-    console.log("done");
-saha_report.classList.toggle("d-none")
-main_report.classList.toggle("d-none")
+saha_btn.addEventListener("click", () => {
+  if (saha_report.classList.contains("d-none")) {
+    saha_report.classList.remove("d-none")
+    saha_sample_report.classList.add("d-none")
+    main_report.classList.add("d-none")
+  } else {
+    saha_report.classList.add("d-none")
+    saha_sample_report.classList.add("d-none")
+    main_report.classList.remove("d-none")
+  }
 
+})
+saha_sample_btn.addEventListener("click", () => {
+  if (saha_sample_report.classList.contains("d-none")) {
+    saha_report.classList.add("d-none")
+    saha_sample_report.classList.remove("d-none")
+    main_report.classList.add("d-none")
+  } else {
+    saha_report.classList.add("d-none")
+    saha_sample_report.classList.add("d-none")
+    main_report.classList.remove("d-none")
+  }
 })
 function splitNumber(value) {
   var num = value.toLocaleString();

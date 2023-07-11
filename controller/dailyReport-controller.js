@@ -16,6 +16,7 @@ import { crusher_feed_report } from "../helper/crusherFeed.js";
 import { loader_tonnage_report } from "../helper/loader-tonnage.js";
 import { abroft_report } from "../helper/abroft.js";
 import { pileNumber_report } from "../helper/pileNumber.js";
+import {sample_report} from '../helper/sample.js';
 
 export class Report {
     static daily(req,res) {
@@ -257,6 +258,22 @@ export class Report {
       var { start_at } = req.body;
       var pile_nmber = await pileNumber_report(start_at, config);
       return res.json(pile_nmber);
+    } catch (err) {
+      res.json(false);
+    }
+  }
+  static async semple(req, res) {
+    try {
+      var token = process.env.token;
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      };
+      var { start_at } = req.body;
+      var samples = await sample_report(start_at, config);
+      return res.json(samples);
     } catch (err) {
       res.json(false);
     }

@@ -55,7 +55,7 @@ for (let i = 0; i <= 24; i++) {
         monthly_tonnage += Number(monthly[i].weight_diff)
     }
 
-    return {daily_tonnage,monthly_tonnage,seperation_east_saha_to_cr,seperation_west_saha_to_cr};
+    return {daily_tonnage,monthly_tonnage,seperation_east_saha_to_cr,seperation_west_saha_to_cr,east_saha_to_cr,west_saha_to_cr};
 
 }
 
