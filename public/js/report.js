@@ -512,7 +512,7 @@ report_form.addEventListener("submit", async (event) => {
     if (samples[i - 1]) {
       sample_detail[code].start = (new Date("0000 " + samples[i - 1].sample_time));
     } else {
-      sample_detail[code].start = (new Date("0000 07:00:01"));
+      sample_detail[code].start = (new Date("0000 " + samples[samples.length-1].sample_time));
     }
     sample_detail[code].end = new Date("0000 " + samples[i].sample_time);
   }
