@@ -504,21 +504,27 @@ report_form.addEventListener("submit", async (event) => {
   const east_saha_to_cr = weighbridge.weighbridge_east_saha_to_cr.east_saha_to_cr;
   const west_saha_to_cr = weighbridge.weighbridge_west_saha_to_cr.west_saha_to_cr;
   const all_saha_cr = [...east_saha_to_cr, ...west_saha_to_cr];
-  const sample_detail = {};
-
+  const clean_samples =[];
   for (let i = 0; i < samples.length; i++) {
-    let code = samples[i].piling_code;
-    sample_detail[code] = { start: "", end: "", services: [] };
-    if (samples[i - 1]) {
-      sample_detail[code].start = (new Date("0000 " + samples[i - 1].sample_time));
-    } else {
-      sample_detail[code].start = (new Date("0000 " + samples[samples.length-1].sample_time));
+    if (start_at == samples[i].jalaliWorkday) {
+      clean_samples.push(samples[i])
     }
-    sample_detail[code].end = new Date("0000 " + samples[i].sample_time);
+  }
+  const sample_detail = {};
+  for (let i = 0; i < clean_samples.length; i++) {
+      let code = clean_samples[i].piling_code;
+      sample_detail[code] = { start: "", end: "", services: [] };
+      if (clean_samples[i - 1]) {
+        sample_detail[code].start = (new Date(clean_samples[i - 1].workday + " " + clean_samples[i - 1].sample_time));
+      } else {
+        sample_detail[code].start = (new Date(clean_samples[i].workday + " " + "00:00:00"));
+      }
+      sample_detail[code].end = new Date(clean_samples[i].workday + " " + clean_samples[i].sample_time);
+    
   }
 
   for (const item of all_saha_cr) {
-    const time = new Date("0000 " + item.first_time);
+    const time = new Date(item.weight_at + " " + item.first_time);
     for (const elem in sample_detail) {
       if (time >= sample_detail[elem].start && time <= sample_detail[elem].end) {
         sample_detail[elem].services.push(item);

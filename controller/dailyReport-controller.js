@@ -272,6 +272,7 @@ export class Report {
         },
       };
       var { start_at } = req.body;
+
       var samples = await sample_report(start_at, config);
       return res.json(samples);
     } catch (err) {
