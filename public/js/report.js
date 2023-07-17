@@ -542,11 +542,36 @@ report_form.addEventListener("submit", async (event) => {
   for (const item in sample_detail) {
     let time = (sample_detail[item].end).toLocaleTimeString();
     let services = sample_detail[item].services.length;
+ let pm_am = time.split(" ")[1];
+    let h=Number(time.split(" ")[0].split(":")[0]);
+    let m=Number(time.split(" ")[0].split(":")[1]);
+    let s=Number(time.split(" ")[0].split(":")[2]);
+    
+    if(pm_am=="PM" && h==12){
+
+    }else if(pm_am=="PM"){
+      h=h+12;
+    }
+    if(pm_am=="AM" && h==12){
+      h=0
+    }
+      if(h<10){
+      h="0"+h
+    }
+    if(m<10){
+      m="0"+m
+    }
+    if(s<10){
+      s="0"+s
+    }
+    time = `${h}:${m}:${s}`;
+    console.log({pm_am,h,m,s});
     html += `
     <tr>
        <td>${num}</td>
        <td>${item}</td>
        <td>${time}</td>
+       <td>${item} ( ${time} )</td>
        <td>${services}</td>
     </tr>
     `
