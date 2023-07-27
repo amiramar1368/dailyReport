@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import {jalaliToMiladi} from './toMiladi.js';
+import {tonnages} from '../config.js';
 
 export async function crusher_feed_report(start_at,config){
     var start_at,end_at;
@@ -11,13 +12,13 @@ export async function crusher_feed_report(start_at,config){
     for (let i = 0; i < data.length; i++) {
         all_service += Number(data[i].total)
         if(data[i].block.includes("D-CF3")|| data[i].block.includes("D-CF2")|| data[i].block.includes("D-CF3-LP") || data[i].block.includes("D-DF") || data[i].block.includes("D-CF2 W")){
-            magnet +=Number(data[i].total)*125;
+            magnet +=Number(data[i].total)*tonnages.belaz_ore_depo;
         } else if(data[i].block.includes("D-Robat")){
-            robat +=Number(data[i].total)*125;
+            robat +=Number(data[i].total)*tonnages.belaz_ore_depo;
         }else if(data[i].block.includes("D-OXIDE")){
-            oxide +=Number(data[i].total)*125;
+            oxide +=Number(data[i].total)*tonnages.belaz_ore_depo;
         }else if(data[i].block.includes("D-")){
-            novin += Number(data[i].total)*125;
+            novin += Number(data[i].total)*tonnages.belaz_ore_depo;
         }
     }
     return {magnet,oxide,robat,novin,all_service};
