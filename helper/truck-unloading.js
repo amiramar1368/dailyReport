@@ -49,18 +49,18 @@ export async function unloading_report(start_at,group_id,config){
         if(group_id!=1){
             if(data[i].truck_name.startsWith("TA30") || data[i].truck_name.startsWith("TA40") || data[i].truck_name.startsWith("TA31") || data[i].truck_name.startsWith("TA41")){
                 if(data[i].truck_name!="TA30" && data[i].truck_name!="TA31" && data[i].truck_name!="TA40" && data[i].truck_name!="TA41"){
-                    ore_mine_to_cr_tonnage += Number(data[i].ore_cr)*115;
-                    ore_mine_to_magnet_tonnage += (Number(data[i].cf2)+Number(data[i].cf2E)+Number(data[i].cf3)+Number(data[i].lo))*115
-                    ore_mine_to_road_tonnage += Number(data[i].ore_road)*115
-                    ore_mine_to_oxide_tonnage += Number(data[i].oxid)*115
+                    ore_mine_to_cr_tonnage += Number(data[i].ore_cr)*105;
+                    ore_mine_to_magnet_tonnage += (Number(data[i].cf2)+Number(data[i].cf2E)+Number(data[i].cf3)+Number(data[i].lo))*105
+                    ore_mine_to_road_tonnage += Number(data[i].ore_road)*105
+                    ore_mine_to_oxide_tonnage += Number(data[i].oxid)*105
                     waste_west_tonnage += Number(data[i].waste_gh)*100
                     waste_east_tonnage += Number(data[i].waste_sh)*100
                     waste_south_tonnage += Number(data[i].waste_jo)*100
                     waste_road_tonnage += Number(data[i].waste_in)*100
 
-                    ore_tonnage += ore*115;
+                    ore_tonnage += ore*105;
                     waste_tonnage += waste*100;
-                    depo_tonnage += Number(data[i].depo_cr) *125;
+                    depo_tonnage += Number(data[i].depo_cr) *115;
                 }else {
                     ore_mine_to_cr_tonnage += Number(data[i].ore_cr)*80;
 
@@ -92,18 +92,18 @@ export async function unloading_report(start_at,group_id,config){
                 depo_tonnage += Number(data[i].depo_cr) *80;  
             }
         }else{ 
-            ore_mine_to_cr_tonnage += Number(data[i].ore_cr)*115;
-            ore_mine_to_magnet_tonnage += (Number(data[i].cf2)+Number(data[i].cf2E)+Number(data[i].cf3)+Number(data[i].lo))*115
-            ore_mine_to_road_tonnage += Number(data[i].ore_road)*115
-            ore_mine_to_oxide_tonnage += Number(data[i].oxid)*115
+            ore_mine_to_cr_tonnage += Number(data[i].ore_cr)*105;
+            ore_mine_to_magnet_tonnage += (Number(data[i].cf2)+Number(data[i].cf2E)+Number(data[i].cf3)+Number(data[i].lo))*105
+            ore_mine_to_road_tonnage += Number(data[i].ore_road)*105
+            ore_mine_to_oxide_tonnage += Number(data[i].oxid)*105
             waste_west_tonnage += Number(data[i].waste_gh)*100
             waste_east_tonnage += Number(data[i].waste_sh)*100
             waste_south_tonnage += Number(data[i].waste_jo)*100
             waste_road_tonnage += Number(data[i].waste_in)*100
 
-            ore_tonnage += ore*115;
+            ore_tonnage += ore*105;
             waste_tonnage += waste*100;
-            depo_tonnage += Number(data[i].depo_cr) *125;
+            depo_tonnage += Number(data[i].depo_cr) *115;
         }
     }
     total_tonnage = ore_tonnage+waste_tonnage+depo_tonnage;
