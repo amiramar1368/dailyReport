@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 import {jalaliToMiladi} from './toMiladi.js';
-const over_houres={700:[],742:[],apa:[],beh:[]}
 export async function extraction_report(start_at,group_id,config){
     var start_at,end_at,truck_start_with;
     start_at = start_at.split("/");
     start_at=end_at = jalaliToMiladi(start_at[0],start_at[1],start_at[2]);
     const {data} = await axios.post("http://192.168.10.20/report/standard/extraction-s11",{start_at,end_at,group_id},config);
+    const over_houres={700:[],742:[],apa:[],beh:[]}
 
     var omz_1=0;
     var omz_2=0;
