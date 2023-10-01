@@ -42,6 +42,6 @@ app.use((req,res)=>{
   res.render("login",{can_access:"",error:""})
 })
 
-app.listen(3600, () => {
+app.listen(3100, () => {
   console.log(`server is running on port 3100`);
 });

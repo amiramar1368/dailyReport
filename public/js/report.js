@@ -221,7 +221,9 @@ const diff_742 = document.getElementById("diff-742");
 const diff_apa = document.getElementById("diff-apa");
 const diff_beh = document.getElementById("diff-beh");
 
-const seperation_saha_to_cr = document.querySelectorAll("div#saha-report td[id]");
+const seperation_saha_to_cr = document.querySelectorAll(
+  "div#saha-report td[id]"
+);
 async function get_report(report_name) {
   start_at = date_input.value;
   pile = pile_input.value;
@@ -287,9 +289,12 @@ report_form.addEventListener("submit", async (event) => {
   start_at = date_input.value;
   // let pile;
 
-
-
   const { data: pile } = await axios.post("/report/pile", { start_at });
+  if (pile == "") {
+    alert("مجددا لاگین نمایید");
+    location.href = "/";
+    return;
+  }
   if (pile.length < 1 || pile.length > 2) {
     return alert("گزارش Mis مشکل دارد");
   }
@@ -302,10 +307,14 @@ report_form.addEventListener("submit", async (event) => {
     refreshPage();
   }
 
-  over_hour_700.innerHTML = extraction.extraction_700.over_houres[700].length + "دستگاه ";
-  over_hour_742.innerHTML = extraction.extraction_700.over_houres[742].length + "دستگاه ";
-  over_hour_apa.innerHTML = extraction.extraction_700.over_houres.apa.length + "دستگاه ";
-  over_hour_beh.innerHTML = extraction.extraction_700.over_houres.beh.length + "دستگاه ";
+  over_hour_700.innerHTML =
+    extraction.extraction_700.over_houres[700].length + "دستگاه ";
+  over_hour_742.innerHTML =
+    extraction.extraction_700.over_houres[742].length + "دستگاه ";
+  over_hour_apa.innerHTML =
+    extraction.extraction_700.over_houres.apa.length + "دستگاه ";
+  over_hour_beh.innerHTML =
+    extraction.extraction_700.over_houres.beh.length + "دستگاه ";
 
   omz_1.innerHTML = extraction.extraction_700.omz_1.toFixed(2);
   omz_2.innerHTML = extraction.extraction_700.omz_2.toFixed(2);
@@ -501,36 +510,49 @@ report_form.addEventListener("submit", async (event) => {
   if (!samples) {
     refreshPage();
   }
-  const east_saha_to_cr = weighbridge.weighbridge_east_saha_to_cr.east_saha_to_cr;
-  const west_saha_to_cr = weighbridge.weighbridge_west_saha_to_cr.west_saha_to_cr;
+  const east_saha_to_cr =
+    weighbridge.weighbridge_east_saha_to_cr.east_saha_to_cr;
+  const west_saha_to_cr =
+    weighbridge.weighbridge_west_saha_to_cr.west_saha_to_cr;
   const all_saha_cr = [...east_saha_to_cr, ...west_saha_to_cr];
-  const clean_samples =[];
+  const clean_samples = [];
   for (let i = 0; i < samples.length; i++) {
     if (start_at == samples[i].jalaliWorkday) {
-      clean_samples.push(samples[i])
+      clean_samples.push(samples[i]);
     }
   }
   const sample_detail = {};
   for (let i = 0; i < clean_samples.length; i++) {
-      let code = clean_samples[i].piling_code;
-      sample_detail[code] = { start: "", end: "", services: [] };
-      if (clean_samples[i - 1]) {
-        sample_detail[code].start = (new Date(clean_samples[i - 1].workday + " " + clean_samples[i - 1].sample_time));
-      } else {
-        sample_detail[code].start = (new Date(clean_samples[i].workday + " " + "00:00:00"));
-      }
-      sample_detail[code].end = new Date(clean_samples[i].workday + " " + clean_samples[i].sample_time);
-    
+    let code = clean_samples[i].piling_code;
+    sample_detail[code] = { start: "", end: "", services: [] };
+    if (clean_samples[i - 1]) {
+      sample_detail[code].start = new Date(
+        clean_samples[i - 1].workday + " " + clean_samples[i - 1].sample_time
+      );
+    } else {
+      sample_detail[code].start = new Date(
+        clean_samples[i].workday + " " + "00:00:00"
+      );
+    }
+    sample_detail[code].end = new Date(
+      clean_samples[i].workday + " " + clean_samples[i].sample_time
+    );
   }
 
   for (const item of all_saha_cr) {
     const time = new Date(item.weight_at + " " + item.first_time);
     for (const elem in sample_detail) {
-      if (time >= sample_detail[elem].start && time <= sample_detail[elem].end) {
+      if (
+        time >= sample_detail[elem].start &&
+        time <= sample_detail[elem].end
+      ) {
         sample_detail[elem].services.push(item);
         continue;
       } else if (sample_detail[elem].start > sample_detail[elem].end) {
-        if (time >= sample_detail[elem].start || time <= sample_detail[elem].end) {
+        if (
+          time >= sample_detail[elem].start ||
+          time <= sample_detail[elem].end
+        ) {
           sample_detail[elem].services.push(item);
         }
       }
@@ -540,32 +562,31 @@ report_form.addEventListener("submit", async (event) => {
   let html = "";
   let num = 1;
   for (const item in sample_detail) {
-    let time = (sample_detail[item].end).toLocaleTimeString();
+    let time = sample_detail[item].end.toLocaleTimeString();
     let services = sample_detail[item].services.length;
- let pm_am = time.split(" ")[1];
-    let h=Number(time.split(" ")[0].split(":")[0]);
-    let m=Number(time.split(" ")[0].split(":")[1]);
-    let s=Number(time.split(" ")[0].split(":")[2]);
-    
-    if(pm_am=="PM" && h==12){
+    let pm_am = time.split(" ")[1];
+    let h = Number(time.split(" ")[0].split(":")[0]);
+    let m = Number(time.split(" ")[0].split(":")[1]);
+    let s = Number(time.split(" ")[0].split(":")[2]);
 
-    }else if(pm_am=="PM"){
-      h=h+12;
+    if (pm_am == "PM" && h == 12) {
+    } else if (pm_am == "PM") {
+      h = h + 12;
     }
-    if(pm_am=="AM" && h==12){
-      h=0
+    if (pm_am == "AM" && h == 12) {
+      h = 0;
     }
-      if(h<10){
-      h="0"+h
+    if (h < 10) {
+      h = "0" + h;
     }
-    if(m<10){
-      m="0"+m
+    if (m < 10) {
+      m = "0" + m;
     }
-    if(s<10){
-      s="0"+s
+    if (s < 10) {
+      s = "0" + s;
     }
     time = `${h}:${m}:${s}`;
-    console.log({pm_am,h,m,s});
+    console.log({ pm_am, h, m, s });
     html += `
     <tr>
        <td>${num}</td>
@@ -574,7 +595,7 @@ report_form.addEventListener("submit", async (event) => {
        <td>${item} ( ${time} )</td>
        <td>${services}</td>
     </tr>
-    `
+    `;
     num++;
   }
   saha_sample_table.innerHTML = html;
@@ -613,9 +634,10 @@ report_form.addEventListener("submit", async (event) => {
     weighbridge.weighbridge_west_saha_to_cr.monthly_tonnage;
 
   // seperation_saha_to_cr
-  const saha_east = weighbridge.weighbridge_east_saha_to_cr.seperation_east_saha_to_cr;
-  const saha_west = weighbridge.weighbridge_west_saha_to_cr.seperation_west_saha_to_cr;
-
+  const saha_east =
+    weighbridge.weighbridge_east_saha_to_cr.seperation_east_saha_to_cr;
+  const saha_west =
+    weighbridge.weighbridge_west_saha_to_cr.seperation_west_saha_to_cr;
 
   for (let i = 0; i <= 24; i++) {
     const number = Number(saha_east[i]) + Number(saha_west[i]);
@@ -708,27 +730,26 @@ report_form.addEventListener("submit", async (event) => {
 
 saha_btn.addEventListener("click", () => {
   if (saha_report.classList.contains("d-none")) {
-    saha_report.classList.remove("d-none")
-    saha_sample_report.classList.add("d-none")
-    main_report.classList.add("d-none")
+    saha_report.classList.remove("d-none");
+    saha_sample_report.classList.add("d-none");
+    main_report.classList.add("d-none");
   } else {
-    saha_report.classList.add("d-none")
-    saha_sample_report.classList.add("d-none")
-    main_report.classList.remove("d-none")
+    saha_report.classList.add("d-none");
+    saha_sample_report.classList.add("d-none");
+    main_report.classList.remove("d-none");
   }
-
-})
+});
 saha_sample_btn.addEventListener("click", () => {
   if (saha_sample_report.classList.contains("d-none")) {
-    saha_report.classList.add("d-none")
-    saha_sample_report.classList.remove("d-none")
-    main_report.classList.add("d-none")
+    saha_report.classList.add("d-none");
+    saha_sample_report.classList.remove("d-none");
+    main_report.classList.add("d-none");
   } else {
-    saha_report.classList.add("d-none")
-    saha_sample_report.classList.add("d-none")
-    main_report.classList.remove("d-none")
+    saha_report.classList.add("d-none");
+    saha_sample_report.classList.add("d-none");
+    main_report.classList.remove("d-none");
   }
-})
+});
 function splitNumber(value) {
   var num = value.toLocaleString();
   return num;

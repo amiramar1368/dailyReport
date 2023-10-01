@@ -18,7 +18,7 @@ export async function crusher_feed_report(start_at,config){
         }else if(data[i].block.includes("D-OXIDE")){
             oxide +=Number(data[i].total)*tonnages.belaz_ore_depo;
         }else if(data[i].block.includes("D-")){
-            novin += Number(data[i].total)*tonnages.belaz_ore_depo;
+            novin += Number(data[i].total)*tonnages.belaz_ore_other_depo;
         }
     }
     return {magnet,oxide,robat,novin,all_service};
