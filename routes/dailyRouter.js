@@ -20,6 +20,7 @@ router.post("/loader_tonnage",Report.loader_tonnage);
 router.post("/abroft",Report.abroft);
 router.post("/pile",Report.pile);
 router.post("/samples",Report.semple);
+router.post("/trips",Report.trips);
 
 
 export default router;

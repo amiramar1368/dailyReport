@@ -44,6 +44,8 @@ const shovel_beh_hour = document.getElementById("shovel-beh-hour");
 const drillwagon_hour = document.getElementById("drillwagon-hour");
 const drillrig_hour = document.getElementById("drillrig-hour");
 
+const depo_to_depo = document.getElementById("depoToDepo");
+
 const truck_700_number = document.getElementById("truck-700-number");
 const truck_742_number = document.getElementById("truck-742-number");
 const truck_apa_number = document.getElementById("truck-apa-number");
@@ -299,6 +301,20 @@ report_form.addEventListener("submit", async (event) => {
     return alert("گزارش Mis مشکل دارد");
   }
   pile_number.innerHTML = pile[pile.length - 1].pile;
+
+  const { data: trips } = await axios.post("/report/trips", {
+    start_at,
+  });
+  const depoToDepo = {};
+  for (let i = 0; i < trips.length; i++) {
+    const block_name = trips[i].block_name;
+    if (!depoToDepo[block_name]) {
+      depoToDepo[block_name] = 1;
+    } else {
+      depoToDepo[block_name]++;
+    }
+  }
+  depo_to_depo.innerHTML = JSON.stringify(depoToDepo)
   const { data: extraction } = await axios.post("/report/extraction", {
     start_at,
     pile,
@@ -586,7 +602,6 @@ report_form.addEventListener("submit", async (event) => {
       s = "0" + s;
     }
     time = `${h}:${m}:${s}`;
-    console.log({ pm_am, h, m, s });
     html += `
     <tr>
        <td>${num}</td>

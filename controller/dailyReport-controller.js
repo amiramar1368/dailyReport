@@ -17,6 +17,7 @@ import { loader_tonnage_report } from "../helper/loader-tonnage.js";
 import { abroft_report } from "../helper/abroft.js";
 import { pileNumber_report } from "../helper/pileNumber.js";
 import {sample_report} from '../helper/sample.js';
+import {trip_report} from '../helper/trip.js';
 
 export class Report {
     static daily(req,res) {
@@ -275,6 +276,23 @@ export class Report {
 
       var samples = await sample_report(start_at, config);
       return res.json(samples);
+    } catch (err) {
+      res.json(false);
+    }
+  }
+  static async trips(req, res) {
+    try {
+      var token = process.env.token;
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      };
+      var { start_at } = req.body;
+
+      var trips = await trip_report(start_at, config);
+      return res.json(trips);
     } catch (err) {
       res.json(false);
     }
