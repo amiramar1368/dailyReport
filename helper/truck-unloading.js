@@ -106,7 +106,12 @@ export async function unloading_report(start_at,group_id,config){
             depo_tonnage += Number(data[i].depo_cr) *tonnages.belaz_ore_depo;
         }
     }
-    total_tonnage = ore_tonnage+waste_tonnage+depo_tonnage;
+    // console.log(1010,process.env.novin);
+    if(group_id==1){
+        total_tonnage = ore_tonnage+waste_tonnage+depo_tonnage -(tonnages.belaz_ore_depo-tonnages.belaz_ore_other_depo)*process.env.novin;
+    }else{
+        total_tonnage = ore_tonnage+waste_tonnage+depo_tonnage ;
+    }
     if(tonnage_for_compare!=total_tonnage){
         compare=false;
     }

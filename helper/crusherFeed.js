@@ -21,5 +21,6 @@ export async function crusher_feed_report(start_at,config){
             novin += Number(data[i].total)*tonnages.belaz_ore_other_depo;
         }
     }
+    process.env.novin = novin/tonnages.belaz_ore_other_depo;
     return {magnet,oxide,robat,novin,all_service};
 }

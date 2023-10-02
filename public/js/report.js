@@ -407,6 +407,16 @@ report_form.addEventListener("submit", async (event) => {
 
   loader_tonnage.innerHTML = tonnage.loader_tonnage;
 
+  const { data: crusher } = await axios.post("/report/crusher", { start_at });
+  if (!crusher) {
+    refreshPage();
+  }
+  depo_magnet_to_cr.innerHTML = crusher.crusher_feed.magnet;
+  depo_oxide_to_cr.innerHTML = crusher.crusher_feed.oxide;
+  depo_robat_to_cr.innerHTML = crusher.crusher_feed.robat;
+  depo_novin_to_cr.innerHTML = crusher.crusher_feed.novin;
+  crusher_service.innerHTML = crusher.crusher_feed.all_service;
+
   const { data: unloading } = await axios.post("/report/unloading", {
     start_at,
     pile,
@@ -468,16 +478,6 @@ report_form.addEventListener("submit", async (event) => {
   abroft_742.innerHTML = abroft.abroft_742.asfalt;
   abroft_apa.innerHTML = abroft.abroft_Apa.apa;
   abroft_beh.innerHTML = abroft.abroft_Beh.beh;
-
-  const { data: crusher } = await axios.post("/report/crusher", { start_at });
-  if (!crusher) {
-    refreshPage();
-  }
-  depo_magnet_to_cr.innerHTML = crusher.crusher_feed.magnet;
-  depo_oxide_to_cr.innerHTML = crusher.crusher_feed.oxide;
-  depo_robat_to_cr.innerHTML = crusher.crusher_feed.robat;
-  depo_novin_to_cr.innerHTML = crusher.crusher_feed.novin;
-  crusher_service.innerHTML = crusher.crusher_feed.all_service;
   const { data: transport } = await axios.post("/report/transport", {
     start_at,
     pile,

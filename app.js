@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import expressLayouts from 'express-ejs-layouts';
 
+import {port} from './config.js';
 import homeRouter from "./routes/homePageRouter.js";
 import serviseRouter from "./routes/serviseRouter.js";
 import mapRouter from './routes/mapRouter.js';
@@ -42,6 +43,6 @@ app.use((req,res)=>{
   res.render("login",{can_access:"",error:""})
 })
 
-app.listen(3100, () => {
-  console.log(`server is running on port 3100`);
+app.listen(port, () => {
+  console.log(`server is running on port ${port}`);
 });

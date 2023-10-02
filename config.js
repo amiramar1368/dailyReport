@@ -1,3 +1,4 @@
+export const port = 3100;
 export const tonnages = {
 belaz_ore_mine:105,
 belaz_ore_depo:115,
