@@ -9,7 +9,9 @@ import { filterOutliers } from "../helper/filterOutliers.js";
 import { dateToNumber} from "../helper/dateToNumber.js";
 import { jalaliToMiladi } from "../helper/toMiladi.js";
 import {current} from '../helper/currentDate.js';
+import { baseURL } from "../config.js";
 
+axios.defaults.baseURL = baseURL
 export class Service {
 
   static async deleteReport(req,res){
@@ -100,7 +102,7 @@ static async fetcchUser(req,res,next){
       };
       try {
         const { data } = await axios.post(
-          "http://192.168.10.20/trips/report",
+          "/trips/report",
           {group_id, report_at, shift, review: 1},
           config
         );
@@ -109,7 +111,7 @@ static async fetcchUser(req,res,next){
         //*********************************************************************
         // report_at=report_at.split(" ")[0];
         // console.log({ group_id,shift:Number(shift),stop_type:2,vehicle_type_id:1, workday});
-          // const{date:trips} = await axios.post("http://192.168.10.20/trips/all",{ group_id:[group_id],shift:[Number(shift)],review:1, report_at:"2022-11-12"},config);
+          // const{date:trips} = await axios.post("/trips/all",{ group_id:[group_id],shift:[Number(shift)],review:1, report_at:"2022-11-12"},config);
           // res.json(trips)
 
 

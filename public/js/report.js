@@ -44,7 +44,12 @@ const shovel_beh_hour = document.getElementById("shovel-beh-hour");
 const drillwagon_hour = document.getElementById("drillwagon-hour");
 const drillrig_hour = document.getElementById("drillrig-hour");
 
-const depo_to_depo = document.getElementById("depoToDepo");
+const mine_depo_to_depo = document.getElementById("mineDepoToDepo");
+const other_depo_to_depo = document.getElementById("otherDepoToDepo");
+const _4_bogh_700 = document.getElementById("4bogh-700");
+const _4_bogh_742 = document.getElementById("4bogh-742");
+const _4_bogh_Ap = document.getElementById("4bogh-Ap");
+const depoTocrusher_distance = document.getElementById("depoTocrusher-distance");
 
 const truck_700_number = document.getElementById("truck-700-number");
 const truck_742_number = document.getElementById("truck-742-number");
@@ -304,17 +309,64 @@ report_form.addEventListener("submit", async (event) => {
 
   const { data: trips } = await axios.post("/report/trips", {
     start_at,
-  });
-  const depoToDepo = {};
-  for (let i = 0; i < trips.length; i++) {
-    const block_name = trips[i].block_name;
-    if (!depoToDepo[block_name]) {
-      depoToDepo[block_name] = 1;
+  }); 
+  // console.log(trips);
+  mine_depo_to_depo.innerHTML = trips.trips700.DepoToDepo.mine_depo;
+  other_depo_to_depo.innerHTML = trips.trips700.DepoToDepo.other_depo;
+  
+  const depoTodepo = trips.trips700.DepoToDepo;
+  const allDepoToCR = trips.trips700.DepoToCrusher;
+  const _4_bogh_trips_700 = {...trips.trips700._4_bogh};
+  const _4_bogh_trips_742 = {...trips.trips742._4_bogh};
+  const _4_bogh_trips__Ap = {...trips.tripsAp._4_bogh};
+  let depo_cr_distance=0;
+  let number_of_over_distance=0;
+  const D_TO_D = {};
+  const final_4_bogh = {Mo:{},As:{},Ap:{}};
+  for (let i = 0; i < depoTodepo.length; i++) {
+    const block_name = depoTodepo[i].block_name;
+    if (!D_TO_D[block_name]) {
+      D_TO_D[block_name] = 1;
     } else {
-      depoToDepo[block_name]++;
+      D_TO_D[block_name]++;
     }
   }
-  depo_to_depo.innerHTML = JSON.stringify(depoToDepo)
+  for (let item in _4_bogh_trips_700) {
+    const unloading_name = _4_bogh_trips_700[item].unloading_name;
+    if (!final_4_bogh.Mo[unloading_name]) {
+      final_4_bogh.Mo[unloading_name] = 1;
+    } else {
+      final_4_bogh.Mo[unloading_name]++;
+    }
+  }
+  for (let item in _4_bogh_trips_742) {
+    const unloading_name = _4_bogh_trips_742[item].unloading_name;
+    if (!final_4_bogh.As[unloading_name]) {
+      final_4_bogh.As[unloading_name] = 1;
+    } else {
+      final_4_bogh.As[unloading_name]++;
+    }
+  }
+  for (let item in _4_bogh_trips__Ap) {
+    const unloading_name = _4_bogh_trips__Ap[item].unloading_name;
+    if (!final_4_bogh.Ap[unloading_name]) {
+      final_4_bogh.Ap[unloading_name] = 1;
+    } else {
+      final_4_bogh.Ap[unloading_name]++;
+    }
+  }
+  for (let i = 0; i < allDepoToCR.length; i++) {
+    if((Number(allDepoToCR[i].cycle_distance)>2400) || (Number(allDepoToCR[i].cycle_distance)<800)){
+      number_of_over_distance ++;
+    }else{
+      depo_cr_distance += Number(allDepoToCR[i].cycle_distance);
+    }
+  }
+  const average_depo_to_cr_distance = depo_cr_distance/(allDepoToCR.length-number_of_over_distance)
+  _4_bogh_700.innerHTML = JSON.stringify(final_4_bogh.Mo);
+  _4_bogh_742.innerHTML = JSON.stringify(final_4_bogh.As);
+  _4_bogh_Ap.innerHTML = JSON.stringify(final_4_bogh.Ap);
+  depoTocrusher_distance.innerHTML = ((depo_cr_distance+(average_depo_to_cr_distance*number_of_over_distance))/1000).toFixed(2);
   const { data: extraction } = await axios.post("/report/extraction", {
     start_at,
     pile,
@@ -322,7 +374,6 @@ report_form.addEventListener("submit", async (event) => {
   if (!extraction) {
     refreshPage();
   }
-
   over_hour_700.innerHTML =
     extraction.extraction_700.over_houres[700].length + "دستگاه ";
   over_hour_742.innerHTML =

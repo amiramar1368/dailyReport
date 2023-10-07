@@ -10,7 +10,7 @@ export async function mis_report(start_at,pile,config){
     if(pile.length>1){
         pile=1;
     }
-    const {data} = await axios.post("http://192.168.10.20/report/crusher/crusher-c8",{pile,workday:start_at},config);
+    const {data} = await axios.post("/report/crusher/crusher-c8",{pile,workday:start_at},config);
     
     return data;
 }

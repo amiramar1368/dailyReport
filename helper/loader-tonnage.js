@@ -7,7 +7,7 @@ export async function loader_tonnage_report(start_at,config){
     start_at = start_at.split("/");
     start_at=end_at=start=end = jalaliToMiladi(start_at[0],start_at[1],start_at[2]);
     var tonnage=0
-    const {data} = await axios.post("http://192.168.10.20/report/vehicle/vehicle-v2",{start_at,end_at,group_id:1,start,end},config);
+    const {data} = await axios.post("/report/vehicle/vehicle-v2",{start_at,end_at,group_id:1,start,end},config);
     
     for (let i = 0; i < data.length; i++) {
         if(data[i].shovel_name.startsWith("L99")){

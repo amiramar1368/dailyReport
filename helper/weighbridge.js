@@ -9,12 +9,12 @@ export async function weighbridge_report(start_at,weighbridge_id,config){
     start_at = end_at = jalaliToMiladi(start_at[0],start_at[1],start_at[2]);
     var daily_tonnage = 0
     var monthly_tonnage = 0
-    const {data:daily} = await axios.post("http://192.168.10.20/report/weighbridge/w1",{start_at,end_at,weighbridge_id},config);
+    const {data:daily} = await axios.post("/report/weighbridge/w1",{start_at,end_at,weighbridge_id},config);
     for (let i = 0; i < daily.length; i++) {
         daily_tonnage += Number(daily[i].weight_diff)
     }
     
-    const {data:monthly} = await axios.post("http://192.168.10.20/report/weighbridge/w1",{start_at:first_date,end_at,weighbridge_id},config);
+    const {data:monthly} = await axios.post("/report/weighbridge/w1",{start_at:first_date,end_at,weighbridge_id},config);
     for (let i = 0; i < monthly.length; i++) {
         monthly_tonnage += Number(monthly[i].weight_diff)
     }
@@ -33,7 +33,7 @@ export async function weighbridge_report2(start_at,destination_id,weighbridge_id
     start_at = end_at = jalaliToMiladi(start_at[0],start_at[1],start_at[2]);
     var daily_tonnage = 0
     var monthly_tonnage = 0
-    const {data:daily} = await axios.post("http://192.168.10.20/report/weighbridge/w2",{start_at,end_at,destination_id,weighbridge_id},config);
+    const {data:daily} = await axios.post("/report/weighbridge/w2",{start_at,end_at,destination_id,weighbridge_id},config);
     for (let i = 0; i < daily.length; i++) {
         daily_tonnage += Number(daily[i].weight_diff);
         if(daily[i].destination_id==1 && daily[i].weighbridge_id==6){
@@ -50,7 +50,7 @@ for (let i = 0; i <= 24; i++) {
 
 
 
-    const {data:monthly} = await axios.post("http://192.168.10.20/report/weighbridge/w2",{start_at:first_date,end_at,weighbridge_id,destination_id},config);
+    const {data:monthly} = await axios.post("/report/weighbridge/w2",{start_at:first_date,end_at,weighbridge_id,destination_id},config);
     for (let i = 0; i < monthly.length; i++) {
         monthly_tonnage += Number(monthly[i].weight_diff)
     }

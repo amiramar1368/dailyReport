@@ -290,9 +290,10 @@ export class Report {
         },
       };
       var { start_at } = req.body;
-
-      var trips = await trip_report(start_at, config);
-      return res.json(trips);
+      const trips700 = await trip_report(start_at,1, config);
+      const trips742 = await trip_report(start_at,3, config);
+      const tripsAp = await trip_report(start_at,7, config);
+      return res.json({trips700,trips742,tripsAp});
     } catch (err) {
       res.json(false);
     }

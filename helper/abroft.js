@@ -6,7 +6,7 @@ export async function abroft_report(start_at,group_id,config){
     var start_at;
     start_at = start_at.split("/");
     start_at = jalaliToMiladi(start_at[0],start_at[1],start_at[2]);
-    const {data} = await axios.post("http://192.168.10.20/report/standard/extraction-s1",{workday:start_at,group_id},config);
+    const {data} = await axios.post("/report/standard/extraction-s1",{workday:start_at,group_id},config);
     let moj=0;
     let asfalt=0;
     let beh=0;

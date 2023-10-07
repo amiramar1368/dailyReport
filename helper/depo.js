@@ -7,7 +7,7 @@ export async function depo_report(workday,config){
     workday = workday.split("/");
     workday = jalaliToMiladi(workday[0],workday[1],workday[2]);
     var [magnet,other,robat,novin]=[0,0,0,0];
-    const {data} = await axios.post("http://192.168.10.20/report/management/m13",{workday},config);
+    const {data} = await axios.post("/report/management/m13",{workday},config);
     for (let i = 0; i < data.length; i++) {
         if(data[i].depo=="سایر"){
             other = Number(data[i].remaind);

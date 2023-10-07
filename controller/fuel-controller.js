@@ -1,8 +1,10 @@
 import {jalaliToMiladi} from '../helper/toMiladi.js';
 import {current} from '../helper/currentDate.js';
 import {numberToDate} from '../helper/numberToDate.js';
+import {baseURL} from '../config.js';
 
 import axios from 'axios';
+axios.defaults.baseURL=baseURL;
 import { dateToNumber } from '../helper/dateToNumber.js';
 export class Fuel{
     static async get_data(req,res){
@@ -22,7 +24,7 @@ export class Fuel{
               Authorization: "Bearer " + process.env.token,
             },
           };
-            const { data } = await axios.post("http://192.168.10.20/report/fuel/f1",{group_id, start_at:date, end_at:date},config);
+            const { data } = await axios.post("/report/fuel/f1",{group_id, start_at:date, end_at:date},config);
             for (let record of data) {
               delete record.fuel_id;
               delete record.fuel_time;

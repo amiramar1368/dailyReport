@@ -1,7 +1,9 @@
 import fs from "fs";
 
 import axios from "axios";
+import { baseURL } from "../config.js";
 
+axios.defaults.baseURL = baseURL
 export class Map {
   static async map(req, res) {
     const file = fs.readFileSync("map.txt", "utf-8");
@@ -20,7 +22,7 @@ export class Map {
           Authorization: token,
         },
       };
-      const { data } = await axios.post("http://192.168.10.20/route-report", req.body, config);
+      const { data } = await axios.post("/route-report", req.body, config);
       var start=[Number(data[0].lat),Number(data[0].lng)];
       var end =[Number(data[data.length-1].lat),Number(data[data.length-1].lng)];
       data.forEach((item) => {

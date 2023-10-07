@@ -9,7 +9,7 @@ export async function speed_report(start_at,group_id,config){
     var total_speed=0;
     var duration =0;
     var speed=0
-    const {data} = await axios.post("http://192.168.10.20/report/driver/driver-d10",{start_at,end_at,group_id,vehicle_type:1},config);
+    const {data} = await axios.post("/report/driver/driver-d10",{start_at,end_at,group_id,vehicle_type:1},config);
     let counter =0;
     if(data.length>0){
         for (let i = 0; i < data.length; i++) {
