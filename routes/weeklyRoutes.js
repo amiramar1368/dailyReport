@@ -6,4 +6,8 @@ router.get("/",Report.mainPage);
 router.post("/depo-to-crusher",Report.depoToCrusher);
 router.post("/saha-to-crusher",Report.sahaToCrusher);
 router.post("/truck-unloading",Report.truckUnloading);
+router.post("/fuel",Report.fuel);
+router.post("/shovel",Report.shovelPerformance);
+router.post("/weighbridge",Report.weighbridge);
+router.post("/depo",Report.depo);
 export default router;

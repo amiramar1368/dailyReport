@@ -1,178 +1,263 @@
 <style>
-   .columns{
-     border: 2px solid #eee;
-     margin:5px 20px 5px 20px;
-     display: flex;
-     flex-wrap: wrap;
-     gap: 2px;
-     height: 85vh;
-     overflow: scroll;
- 
-   }
-   .cards{
-     border: 2px solid #d7d5d5;
-     background-color: rgb(247, 247, 246);
-     flex: 1 0 100px;
-   }
-   table{
-     text-align: right;
-   }
- 
-   td[id],th[id]{
-     border-right: 1px dashed #c9c5c5;
-     text-align: center;
-     font-weight: bold;
-   }
- 
- body{
-   background-color: #faf7f7;
- }
- 
- 
-  </style>
+  .columns {
+    border: 2px solid #eee;
+    margin: 5px 20px 5px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    height: 85vh;
+    overflow: scroll;
 
-   <div id="main-report" class="columns">
-     <div class="cards">
-       <table class="table table-striped table-hover">
-         <thead>
-             <th>پارامتر</th>
-             <th id="val">مقدار</th>
-         </thead>
-         <tbody>
-             <tr>
-             <td>ساعت omz-1</td>
-             <td id="omz-1"></td>
-             </tr>
-             <tr>
-             <td>ساعت omz-2</td>
-             <td id="omz-2"></td>
-             </tr>
-             </tr>
-             <td>ساعت omz-3</td>
-             <td id="omz-3"></td>
-             </tr>
-             <td>ساعت DMH-1</td>
-             <td id="dmh-1"></td>
-             </tr>
-             </tr>
-             <td>ساعت DMH-2</td>
-             <td id="dmh-2"></td>
-             </tr>           
-         </tbody>
-     </table>
-     </div>
- 
-     <div class="cards">
-       <table class="table table-striped table-hover">
-         <thead>
-             <th>پارامتر</th>
-             <th id="val">مقدار</th>
-         </thead>
-         <tbody>
-           <tr>
-           <td>موجودی مگنت</td>
-           <td id="magnet-depo"></td>
-           </tr>
-           <tr>
-           <td>موجودی سایر دپوها</td>
-           <td id="other-depo"></td>
-           </tr>
-           <tr>
-           <td>موجودی رباط</td>
-           <td id="robat-depo"></td>
-           </tr>
-           <tr>
-           <td>موجودی نوین</td>
-           <td id="novin-depo"></td>
-           </tr>
-         <tr>
-         <td>تعداد OMZ</td>
-         <td id="omz-number"></td>
-         </tr>
-         
-         </tbody>
-     </table>
-     </div>
- 
-     <div class="cards">
-       <table class="table table-striped table-hover">
-         <thead>
-             <th>پارامتر</th>
-             <th id="val">مقدار</th>
-         </thead>
-         <tbody> 
-             <tr>
-             <td>تناژ آهن به مگنت 700</td>
-             <td id="700-mine-to-magnet"></td>
-             </tr>
-             <tr>
-             <td>تناژ آهن به مگنت 742</td>
-             <td id="742-mine-to-magnet"></td>
-             </tr>
-             <tr>
-             <td>تناژ آهن به مگنت بهاوند</td>
-             <td id="beh-mine-to-magnet"></td>
-             </tr>
-             <tr>
-             <td>تناژ آهن به مگنت آپادانا</td>
-             <td id="apa-mine-to-magnet"></td>
-             </tr>   
-             <tr>
-             <td>تناژ آهن راهسازی 700</td>
-             <td id="700-mine-to-road"></td>
-             </tr>
-             <tr>
-             <td>تناژ آهن راهسازی 742</td>
-             <td id="742-mine-to-road"></td>
-             </tr>
-             <tr>
-             <td>تناژ آهن راهسازی بهاوند</td>
-             <td id="beh-mine-to-road"></td>
-             </tr>                 
-                 
-         </tbody>
-     </table>
-     </div>
- 
-     <div class="cards">
-         <table class="table table-striped table-hover">
-             <thead>
-                 <th>پارامتر</th>
-                 <th id="val">مقدار</th>
-             </thead>
-             <tbody>
-                 <tr>
-                 <td>تناژ دپو مگنت به سنگ شکن</td>
-                 <td id="depo-magnet-to-cr"></td>
-                 </tr>
-                 <tr>
-                 <td>تناژ دپو اکسید به سنگ شکن</td>
-                 <td id="depo-oxide-to-cr"></td>
-                 </tr>
-                 <tr>
-                 <td>تناژ دپو رباط به سنگ شکن</td>
-                 <td id="depo-robat-to-cr"></td>
-                 </tr>
-                 <tr>
-                 <td>تناژ دپو نوین به سنگ شکن</td>
-                 <td id="depo-novin-to-cr"></td>
-                 </tr>
-                 <tr>
-                 <td>ورودی روزانه رباط</td>
-                 <td id="robat-daily"></td>
-                 </tr>
-                 <tr>
-                 <td>ورودی روزانه ارجان</td>
-                 <td id="arjan-daily"></td>
-                 </tr>
-                 <tr>
-                 <td>ورودی روزانه نوین</td>
-                 <td id="novin-daily"></td>
-                 </tr>
-                 
-             </tbody>
-         </table>
-     </div>
- </div>
- 
- 
+  }
+
+  .cards {
+    border: 2px solid #d7d5d5;
+    background-color: rgb(247, 247, 246);
+    flex: 1 0 100px;
+  }
+
+  table {
+    text-align: right;
+  }
+
+  td[id],
+  th[id] {
+    border-right: 1px dashed #c9c5c5;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  body {
+    background-color: #faf7f7;
+  }
+</style>
+
+<div id="main-report" class="columns">
+  <div class="cards">
+    <table class="table table-striped table-hover">
+      <thead>
+        <th>پارامتر</th>
+        <th id="val">مقدار</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>آهن حمل شده از معدن به دپو -700</td>
+          <td id="ore-depo-700"></td>
+        </tr>
+        <tr>
+          <td>آهن حمل شده از معدن به سنگ شکن -700</td>
+          <td id="ore-cr-700"></td>
+        </tr>
+        <tr>
+          <td>باطله حمل شده از معدن به شرقی -700</td>
+          <td id="waste-sh-700"></td>
+        </tr>
+        <tr>
+          <td>باطله حمل شده از معدن به غربی -700</td>
+          <td id="waste-gh-700"></td>
+        </tr>
+        <tr>
+          <td>آهن حمل شده از دپو مگنت به سنگ شکن</td>
+          <td id="magnet-to-cr"></td>
+        </tr>
+        <tr>
+          <td>آهن حمل شده از بارهای خریداری شده به سنگ شکن</td>
+          <td id="baught-to-cr"></td>
+        </tr>
+        <tr>
+          <td>آهن حمل شده از سها به سنگ شکن</td>
+          <td id="saha-to-cr"></td>
+        </tr>
+        <tr>
+          <td>آهن حمل شده از معدن به دپو-تراک بزرگ -742</td>
+          <td id="ore-depo-big-742"></td>
+        </tr>
+        <tr>
+          <td>آهن حمل شده از معدن به سنگ شکن-تراک بزرگ -742</td>
+          <td id="ore-cr-big-742"></td>
+        </tr>
+        <tr>
+          <td>باطله حمل شده از معدن به شرقی-تراک بزرگ -742</td>
+          <td id="waste-sh-big-742"></td>
+        </tr>
+        <tr>
+          <td>باطله حمل شده از معدن به غربی-تراک بزرگ -742</td>
+          <td id="waste-gh-big-742"></td>
+        </tr>
+        <tr>
+          <td>آهن حمل شده از معدن به دپو-تراک کوچک -742</td>
+          <td id="ore-depo-small-742"></td>
+        </tr>
+        <tr>
+          <td>آهن حمل شده از معدن به سنگ شکن-تراک کوچک -742</td>
+          <td id="ore-cr-small-742"></td>
+        </tr>
+        <tr>
+          <td>باطله حمل شده از معدن به شرقی-تراک کوچک -742</td>
+          <td id="waste-sh-small-742"></td>
+        </tr>
+        <tr>
+          <td>باطله حمل شده از معدن به غربی-تراک کوچک -742</td>
+          <td id="waste-gh-small-742"></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cards">
+    <table class="table table-striped table-hover">
+      <thead>
+        <th>پارامتر</th>
+        <th id="val">مقدار</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ساعت کارکرد بارکننده 700</td>
+          <td id="shovel-hour-700"></td>
+        </tr>
+        <tr>
+          <td>ساعت کارکرد بارکننده 742</td>
+          <td id="shovel-hour-742"></td>
+        </tr>
+        <tr>
+          <td>ساعت کارکرد باربر 700</td>
+          <td id="truck-hour-700"></td>
+        </tr>
+        <tr>
+          <td>ساعت کارکرد باربر 742</td>
+          <td id="truck-hour-742"></td>
+        </tr>
+        <tr>
+          <td>کیلومتر کارکرد باربر 700</td>
+          <td id="truck-distance-700"></td>
+        </tr>
+        <tr>
+          <td>کیلومتر کارکرد باربر 742</td>
+          <td id="truck-distance-742"></td>
+        </tr>
+        <tr>
+          <td>سوخت باربر 700</td>
+          <td id="truck-fuel-700"></td>
+        </tr>
+        <tr>
+          <td>سوخت باربر 742</td>
+          <td id="truck-fuel-742"></td>
+        </tr>
+        <tr>
+          <td>سوخت بارکننده 700</td>
+          <td id="shovel-fuel-700"></td>
+        </tr>
+        <tr>
+          <td>سوخت بارکننده 742</td>
+          <td id="shovel-fuel-742"></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cards">
+    <table class="table table-striped table-hover">
+      <thead>
+        <th>پارامتر</th>
+        <th id="val">مقدار</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>تناژ شاولهای دیزل -700</td>
+          <td id="shovel-diesel-tonnage-700"></td>
+        </tr>
+        <tr>
+          <td>ساعت شاولهای دپو -700</td>
+          <td id="shovel-depo-hour-700"></td>
+        </tr>
+        <tr>
+          <td>سوخت شاولهای دیزل -700</td>
+          <td id="shovel-diesel-fuel-700"></td>
+        </tr>
+        <tr>
+          <td>ساعت شاولهای دیزل -700</td>
+          <td id="shovel-diesel-hour-700"></td>
+        </tr>
+        <tr>
+          <td>کل سرویسها-700</td>
+          <td id="allservice-700"></td>
+        </tr>
+        <tr>
+          <td>سرویسهای دپو-700</td>
+          <td id="deposervice-700"></td>
+        </tr>
+        <tr>
+          <td>کل سرویسها-742</td>
+          <td id="allservice-742"></td>
+        </tr>
+        <tr>
+          <td>کل تناژ-700</td>
+          <td id="tonnage-700"></td>
+        </tr>
+        <tr>
+          <td>کل تناژ-742</td>
+          <td id="tonnage-742"></td>
+        </tr>
+        <tr>
+          <td>سها به دپو</td>
+          <td id="saha-to-depo"></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cards">
+    <table class="table table-striped table-hover">
+      <thead>
+        <th>پارامتر</th>
+        <th id="val">مقدار</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ورودی رباط</td>
+          <td id="robat"></td>
+        </tr>
+        <tr>
+          <td>ورودی ارجان</td>
+          <td id="arjan"></td>
+        </tr>
+        <tr>
+          <td>ورودی نوین</td>
+          <td id="novin"></td>
+        </tr>
+        <tr>
+          <td>کارمانیا-کاشان</td>
+          <td id="karmania-kashan"></td>
+        </tr>
+        <tr>
+          <td>کارمانیا-شاهرود</td>
+          <td id="karmania-shahrood"></td>
+        </tr>
+        <tr>
+          <td>ورودی چاه گز</td>
+          <td id="chah-gaz"></td>
+        </tr>
+        <tr>
+          <td>ورودی گلمنده</td>
+          <td id="galmande"></td>
+        </tr>
+        <tr>
+          <td>ورودی خزر</td>
+          <td id="khazar"></td>
+        </tr>
+        <tr>
+          <td>موجودی مگنت</td>
+          <td id="depo-magnet"></td>
+        </tr>
+        <tr>
+          <td>موجودی سایر</td>
+          <td id="depo-other"></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
