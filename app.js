@@ -10,6 +10,7 @@ import mapRouter from './routes/mapRouter.js';
 import loginRouter from './routes/loginRouter.js';
 import fuelRouter from './routes/fuel-router.js';
 import dailyRouter from './routes/dailyRouter.js';
+import weeklyRoutes from './routes/weeklyRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -36,6 +37,7 @@ app.use("/home", homeRouter);
 app.use("/service", serviseRouter);
 app.use("/map", mapRouter);
 app.use("/report", dailyRouter);
+app.use("/weekly-report", weeklyRoutes);
 app.get("/get-map", (req, res) => {
   return res.render("map",{layout:"./layout/reportLayout.ejs"});
 });

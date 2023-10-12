@@ -1,0 +1,178 @@
+<style>
+   .columns{
+     border: 2px solid #eee;
+     margin:5px 20px 5px 20px;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 2px;
+     height: 85vh;
+     overflow: scroll;
+ 
+   }
+   .cards{
+     border: 2px solid #d7d5d5;
+     background-color: rgb(247, 247, 246);
+     flex: 1 0 100px;
+   }
+   table{
+     text-align: right;
+   }
+ 
+   td[id],th[id]{
+     border-right: 1px dashed #c9c5c5;
+     text-align: center;
+     font-weight: bold;
+   }
+ 
+ body{
+   background-color: #faf7f7;
+ }
+ 
+ 
+  </style>
+
+   <div id="main-report" class="columns">
+     <div class="cards">
+       <table class="table table-striped table-hover">
+         <thead>
+             <th>پارامتر</th>
+             <th id="val">مقدار</th>
+         </thead>
+         <tbody>
+             <tr>
+             <td>ساعت omz-1</td>
+             <td id="omz-1"></td>
+             </tr>
+             <tr>
+             <td>ساعت omz-2</td>
+             <td id="omz-2"></td>
+             </tr>
+             </tr>
+             <td>ساعت omz-3</td>
+             <td id="omz-3"></td>
+             </tr>
+             <td>ساعت DMH-1</td>
+             <td id="dmh-1"></td>
+             </tr>
+             </tr>
+             <td>ساعت DMH-2</td>
+             <td id="dmh-2"></td>
+             </tr>           
+         </tbody>
+     </table>
+     </div>
+ 
+     <div class="cards">
+       <table class="table table-striped table-hover">
+         <thead>
+             <th>پارامتر</th>
+             <th id="val">مقدار</th>
+         </thead>
+         <tbody>
+           <tr>
+           <td>موجودی مگنت</td>
+           <td id="magnet-depo"></td>
+           </tr>
+           <tr>
+           <td>موجودی سایر دپوها</td>
+           <td id="other-depo"></td>
+           </tr>
+           <tr>
+           <td>موجودی رباط</td>
+           <td id="robat-depo"></td>
+           </tr>
+           <tr>
+           <td>موجودی نوین</td>
+           <td id="novin-depo"></td>
+           </tr>
+         <tr>
+         <td>تعداد OMZ</td>
+         <td id="omz-number"></td>
+         </tr>
+         
+         </tbody>
+     </table>
+     </div>
+ 
+     <div class="cards">
+       <table class="table table-striped table-hover">
+         <thead>
+             <th>پارامتر</th>
+             <th id="val">مقدار</th>
+         </thead>
+         <tbody> 
+             <tr>
+             <td>تناژ آهن به مگنت 700</td>
+             <td id="700-mine-to-magnet"></td>
+             </tr>
+             <tr>
+             <td>تناژ آهن به مگنت 742</td>
+             <td id="742-mine-to-magnet"></td>
+             </tr>
+             <tr>
+             <td>تناژ آهن به مگنت بهاوند</td>
+             <td id="beh-mine-to-magnet"></td>
+             </tr>
+             <tr>
+             <td>تناژ آهن به مگنت آپادانا</td>
+             <td id="apa-mine-to-magnet"></td>
+             </tr>   
+             <tr>
+             <td>تناژ آهن راهسازی 700</td>
+             <td id="700-mine-to-road"></td>
+             </tr>
+             <tr>
+             <td>تناژ آهن راهسازی 742</td>
+             <td id="742-mine-to-road"></td>
+             </tr>
+             <tr>
+             <td>تناژ آهن راهسازی بهاوند</td>
+             <td id="beh-mine-to-road"></td>
+             </tr>                 
+                 
+         </tbody>
+     </table>
+     </div>
+ 
+     <div class="cards">
+         <table class="table table-striped table-hover">
+             <thead>
+                 <th>پارامتر</th>
+                 <th id="val">مقدار</th>
+             </thead>
+             <tbody>
+                 <tr>
+                 <td>تناژ دپو مگنت به سنگ شکن</td>
+                 <td id="depo-magnet-to-cr"></td>
+                 </tr>
+                 <tr>
+                 <td>تناژ دپو اکسید به سنگ شکن</td>
+                 <td id="depo-oxide-to-cr"></td>
+                 </tr>
+                 <tr>
+                 <td>تناژ دپو رباط به سنگ شکن</td>
+                 <td id="depo-robat-to-cr"></td>
+                 </tr>
+                 <tr>
+                 <td>تناژ دپو نوین به سنگ شکن</td>
+                 <td id="depo-novin-to-cr"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه رباط</td>
+                 <td id="robat-daily"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه ارجان</td>
+                 <td id="arjan-daily"></td>
+                 </tr>
+                 <tr>
+                 <td>ورودی روزانه نوین</td>
+                 <td id="novin-daily"></td>
+                 </tr>
+                 
+             </tbody>
+         </table>
+     </div>
+ </div>
+ 
+ 

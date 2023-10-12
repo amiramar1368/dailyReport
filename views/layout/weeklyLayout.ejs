@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>گزارش هفتگی مدیریتی</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link rel="stylesheet" href="/css/jalali.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+    <style>
+      #message,
+      #message-2 {
+        font-size: 15px;
+        margin: 10px;
+      }
+      .message1 {
+        border-radius: 4px;
+        background-color: rgb(254, 30, 30);
+        padding: 3px;
+        display: inline-block;
+      }
+      .message2 {
+        border-radius: 4px;
+        background-color: greenyellow;
+        padding: 5px;
+        display: inline-block;
+      }
+      #div-form {
+        text-align: right;
+        margin: 20px 20px 5px 20px;
+      }
+      #time-counter {
+        margin: 5px;
+        font-size: 12px;
+      }
+      input {
+        line-height: 2.3rem;
+        border-radius: 7px;
+        border: 1px solid #ccc9c9;
+      }
+      #search {
+        background-color: #007bff;
+        color: aliceblue;
+        cursor: pointer;
+        width: 160px;
+      }
+      #search:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body dir="rtl">
+    <div id="div-form">
+      <form id="weekly-report-form" enctype="multipart/form-data">
+        <input
+          type="text"
+          id="start-at"
+          data-jdp
+          data-jdp-max-date="today"
+          placeholder="شروع"
+          required
+        />
+        <input
+          type="text"
+          id="end-at"
+          data-jdp
+          data-jdp-max-date="today"
+          placeholder="پایان"
+          required
+        />
+        <!-- <input type="number" placeholder="شماره پایل" name="pile" id="pile" required> -->
+        <input type="submit" value="دریافت گزارش" name="file" id="search" />
+        <button dir="rtl" id="loading" class="btn btn-primary d-none" disabled>
+          لطفا منتظر بمانید
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+        </button>
+        <span class="d-none message1" id="span-counter"
+          >گزارشگیری مجدد تا
+          <span class="message2" id="time-counter"> 0 </span>ثانیه دیگر امکان
+          پذیر نمی باشد</span
+        >
+      </form>
+      <h1 class="d-none message1" id="message">
+        به دلیل تعداد درخواست بالا، سرور پاسخگو نمی باشد.لطفا دقایقی دیگر تلاش
+        نمایید
+      </h1>
+      <h1 class="d-none message2" id="message-2">گزارش با موفقیت اخذ گردید</h1>
+    </div>
+    <hr />
+    <%-body%>
+  </body>
+  <script src="js/axios.js"></script>
+  <script src="/js/weekly-report.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jalali.js"></script>
+  <script>
+    jalaliDatepicker.startWatch({
+      minDate: "attr",
+      maxDate: "attr",
+    });
+  </script>
+</html>
