@@ -1,7 +1,7 @@
 import axios from "axios";
 import { baseURL } from "../config.js";
 
-const personal_code = [600882, 600880, 600712, 600723, 600500, 700159];
+const personal_code = [600882, 600880, 600712, 600723, 600500, 700159,700280];
 
 axios.defaults.baseURL = baseURL;
 export class Login {
@@ -22,16 +22,17 @@ export class Login {
       });
     }
     try {
-      const { data } = await axios.post("/api/login", { login, password });
-      // const device_name = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
-      // const { data } = await axios.post("/users/login", { login, password,device_name });
+      // const { data } = await axios.post("/api/login", { login, password });
+       const device_name = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
+       const { data } = await axios.post("/users/login", { login, password,device_name });
       if (!data.message) {
-        process.env.token = data.user.token;
-        // process.env.token = data.access_token;
+       // process.env.token = data.user.token;
+         process.env.token = data.access_token;
         process.env.full_name = data.user.full_name;
         var can_access = personal_code.includes(
           Number(data.user.personnel_code)
         );
+        var can_access = true
         process.env.can_access = can_access;
         res.render("home", { error: "", can_access });
       } else {
