@@ -51,4 +51,28 @@ export class Login {
       });
     }
   }
+
+  static async logout(req, res) {
+    try {
+      var token = process.env.token;
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      };
+      const { data } = await axios.post("/users/logout", {}, config);
+      res.render("login", {
+        can_access: "",
+        error: "کاربری با این مشخصات وجود ندارد",
+        layout: "./layout/loginLayout.ejs",
+      });
+    } catch (err) {
+      res.render("login", {
+        can_access: "",
+        error: "کاربری با این مشخصات وجود ندارد",
+        layout: "./layout/loginLayout.ejs",
+      });
+    }
+  }
 }

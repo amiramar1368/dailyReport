@@ -10,4 +10,5 @@ router.post("/fuel",Report.fuel);
 router.post("/shovel",Report.shovelPerformance);
 router.post("/weighbridge",Report.weighbridge);
 router.post("/depo",Report.depo);
+router.post("/lab",Report.lab);
 export default router;

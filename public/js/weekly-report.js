@@ -1,5 +1,10 @@
 const weekly_report = document.getElementById("weekly-report-form");
 const tds = document.querySelectorAll("td[id]");
+const message = document.getElementById("message");
+let loading = document.getElementById("loading");
+let search = document.getElementById("search");
+const span_counter = document.getElementById("span-counter");
+
 
 const ore_depo_700 = document.getElementById("ore-depo-700");
 const ore_cr_700 = document.getElementById("ore-cr-700");
@@ -57,6 +62,11 @@ const depo_other = document.getElementById("depo-other");
 
 const saha_to_depo = document.getElementById("saha-to-depo");
 
+const magnet_pile = document.getElementById("magnet-pile");
+const other_depo_pile = document.getElementById("other-depo-pile");
+const minigBlock_pile = document.getElementById("minigBlock-pile");
+const smallTruck_pile = document.getElementById("smallTruck-pile");
+const bigTruck_pile = document.getElementById("bigTruck-pile");
 
 
 function countDown(time) {
@@ -72,10 +82,10 @@ function countDown(time) {
 }
 function refreshPage() {
   message.classList.remove("d-none");
-  loading.classList.toggle("d-none");
-  search.classList.toggle("d-none");
-  main_report.classList.remove("d-none");
+  loading.classList.add("d-none");
+  search.classList.remove("d-none");
 }
+let just_lab = document.getElementById("just-lab");
 
 // 700=>1   742=> 3   Beh=> 6   Apa=>7
 weekly_report.addEventListener("submit", async (event) => {
@@ -83,9 +93,30 @@ weekly_report.addEventListener("submit", async (event) => {
   for (let i = 0; i < tds.length; i++) {
     tds[i].innerHTML = "";
   }
+  
+  span_counter.classList.add("d-none");
+  message.classList.add("d-none");
+  loading.classList.toggle("d-none");
+  search.classList.toggle("d-none");
+
   let start_at = document.getElementById("start-at").value;
   let end_at = document.getElementById("end-at").value;
-
+  let pile_number = document.getElementById("pile").value;
+  if(just_lab.checked){
+const { data: lab } = await axios.post("/weekly-report/lab", {
+  start_at,
+  end_at,
+  pile_number
+});
+if (!lab) {
+  refreshPage();
+}
+magnet_pile.innerHTML = lab.magnet_depo
+other_depo_pile .innerHTML = lab.other_depo
+minigBlock_pile.innerHTML = lab.minig_block
+smallTruck_pile .innerHTML = lab.ton_80
+bigTruck_pile .innerHTML = lab.ton_105
+  }else{
   const { data: depoToCrusher } = await axios.post(
     "/weekly-report/depo-to-crusher",
     {
@@ -108,7 +139,6 @@ weekly_report.addEventListener("submit", async (event) => {
   if (!depoToCrusher) {
     refreshPage();
   }
-  console.log(sahaToCrusher);
   saha_to_cr.innerHTML = sahaToCrusher.crusher / 1000;
   saha_to_depo.innerHTML =  sahaToCrusher.depo / 1000;
 
@@ -155,17 +185,17 @@ weekly_report.addEventListener("submit", async (event) => {
   }
   const mojtame = fuel.records700;
   const asfalt = fuel.records742;
-  truck_hour_700.innerHTML = mojtame.truckHoure;
-  truck_distance_700.innerHTML = mojtame.truckDistance;
-  truck_fuel_700.innerHTML = mojtame.truckFeul;
-  shovel_fuel_700.innerHTML = mojtame.shovelDieselFeul + mojtame.loaderFeul;
-  shovel_diesel_fuel_700.innerHTML = mojtame.shovelDieselFeul;
+  truck_hour_700.innerHTML =Number( mojtame.truckHoure).toFixed(1);
+  truck_distance_700.innerHTML =Number( mojtame.truckDistance).toFixed(1);
+  truck_fuel_700.innerHTML =Number( mojtame.truckFeul).toFixed(1);
+  shovel_fuel_700.innerHTML =Number( mojtame.shovelDieselFeul + mojtame.loaderFeul).toFixed(1);
+  shovel_diesel_fuel_700.innerHTML =Number( mojtame.shovelDieselFeul).toFixed(1);
 
-  shovel_hour_742.innerHTML = asfalt.shovelHoure;
-  truck_hour_742.innerHTML = asfalt.truckHoure;
-  truck_distance_742.innerHTML = asfalt.truckDistance;
-  truck_fuel_742.innerHTML = asfalt.truckFeul;
-  shovel_fuel_742.innerHTML = asfalt.shovelFeul;
+  shovel_hour_742.innerHTML =Number( asfalt.shovelHoure).toFixed(1);
+  truck_hour_742.innerHTML =Number( asfalt.truckHoure).toFixed(1);
+  truck_distance_742.innerHTML =Number( asfalt.truckDistance).toFixed(1);
+  truck_fuel_742.innerHTML = Number(asfalt.truckFeul).toFixed(1);
+  shovel_fuel_742.innerHTML = Number(asfalt.shovelFeul).toFixed(1);
   const { data: shovel } = await axios.post("/weekly-report/shovel", {
     start_at,
     end_at,
@@ -173,10 +203,10 @@ weekly_report.addEventListener("submit", async (event) => {
   if (!shovel) {
     refreshPage();
   }
-  shovel_depo_hour_700.innerHTML = shovel.hour_ph;
-  shovel_diesel_tonnage_700.innerHTML = shovel.tonnage_diesel;
-  shovel_diesel_hour_700.innerHTML = shovel.hour_diesel;
-  shovel_hour_700.innerHTML = shovel.allShovelHour;
+  shovel_depo_hour_700.innerHTML = Number(shovel.hour_ph).toFixed(1);
+  shovel_diesel_tonnage_700.innerHTML = Number(shovel.tonnage_diesel).toFixed(1);
+  shovel_diesel_hour_700.innerHTML = Number(shovel.hour_diesel).toFixed(1);
+  shovel_hour_700.innerHTML = Number(shovel.allShovelHour).toFixed(1);
   
   const { data: weighbridge } = await axios.post("/weekly-report/weighbridge", {
     start_at,
@@ -185,14 +215,14 @@ weekly_report.addEventListener("submit", async (event) => {
   if (!weighbridge) {
     refreshPage();
   }
-robat.innerHTML = weighbridge.robat;
-arjan.innerHTML = weighbridge.arjan;
-novin.innerHTML = weighbridge.novin;
-karmania_ka.innerHTML = weighbridge.karmania_ka;
-karmania_sh.innerHTML = weighbridge.karmania_sh;
-chah_gaz.innerHTML = weighbridge.chah_gaz;
-khazar.innerHTML = weighbridge.khazar;
-galmande.innerHTML = weighbridge.galmande;
+robat.innerHTML = Number(weighbridge.robat).toFixed(1);
+arjan.innerHTML = Number(weighbridge.arjan).toFixed(1);
+novin.innerHTML = Number(weighbridge.novin).toFixed(1);
+karmania_ka.innerHTML = Number(weighbridge.karmania_ka).toFixed(1);
+karmania_sh.innerHTML = Number(weighbridge.karmania_sh).toFixed(1);
+chah_gaz.innerHTML = Number(weighbridge.chah_gaz).toFixed(1);
+khazar.innerHTML = Number(weighbridge.khazar).toFixed(1);
+galmande.innerHTML = Number(weighbridge.galmande).toFixed(1);
 
 const { data: depo } = await axios.post("/weekly-report/depo", {
   start_at,
@@ -201,7 +231,28 @@ const { data: depo } = await axios.post("/weekly-report/depo", {
 if (!depo) {
   refreshPage();
 }
-console.log(depo);
 depo_magnet.innerHTML = depo[1].remaind;
 depo_other.innerHTML = depo[0].remaind;
+const { data: lab } = await axios.post("/weekly-report/lab", {
+  start_at,
+  end_at,
+  pile_number
+});
+if (!lab) {
+  refreshPage();
+}
+magnet_pile.innerHTML = lab.magnet_depo
+other_depo_pile .innerHTML = lab.other_depo
+minigBlock_pile.innerHTML = lab.minig_block
+smallTruck_pile .innerHTML = lab.ton_80
+bigTruck_pile .innerHTML = lab.ton_105
+}
+setTimeout(() => {
+  search.disabled = false;
+  span_counter.classList.add("d-none");
+}, 30000);
+search.disabled = true;
+search.classList.remove("d-none");
+loading.classList.add("d-none");
+span_counter.classList.remove("d-none");
 });

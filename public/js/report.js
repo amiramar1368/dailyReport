@@ -205,7 +205,7 @@ const abroft_apa = document.getElementById("abroft-apa");
 const abroft_beh = document.getElementById("abroft-beh");
 
 const message = document.getElementById("message");
-const message_success = document.getElementById("message-2");
+const message_success = document.getElementById("success-message");
 
 const transport_depo_700 = document.getElementById("transport-depo-700");
 const transport_ore_700 = document.getElementById("transport-ore-700");
@@ -259,8 +259,8 @@ async function get_report(report_name) {
 
 function refreshPage() {
   message.classList.remove("d-none");
-  loading.classList.toggle("d-none");
-  search.classList.toggle("d-none");
+  loading.classList.add("d-none");
+  search.classList.remove("d-none");
   main_report.classList.remove("d-none");
   saha_report.classList.add("d-none");
   saha_sample_report.classList.add("d-none");
@@ -297,6 +297,7 @@ report_form.addEventListener("submit", async (event) => {
   // let pile;
 
   const { data: pile } = await axios.post("/report/pile", { start_at });
+  console.log({pile});
   if (pile == "") {
     alert("مجددا لاگین نمایید");
     location.href = "/";

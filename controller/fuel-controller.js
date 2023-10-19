@@ -8,6 +8,7 @@ axios.defaults.baseURL=baseURL;
 import { dateToNumber } from '../helper/dateToNumber.js';
 export class Fuel{
     static async get_data(req,res){
+      try {
         var currentDate = current();
         var {group_id, date} = req.body;
         if (date == "") {
@@ -60,5 +61,9 @@ export class Fuel{
               }
             }
         res.json({filterd_data,dist_litr,dist_time})
+      } catch (err) {
+        return false
+      }
+        
     }
 }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/bootstrap.css" />
     <style>
       #message,
-      #message-2 {
+      #success-message {
         font-size: 15px;
         margin: 10px;
       }
@@ -47,6 +47,13 @@
       #search:hover {
         opacity: 0.9;
       }
+      label{
+        margin-right: 10px;
+        cursor: pointer;
+      }
+      #just-lab{
+        margin-left: 10px;
+      }
     </style>
   </head>
   <body dir="rtl">
@@ -68,9 +75,12 @@
           placeholder="پایان"
           required
         />
+        <input type="number" id="pile" required placeholder="شماره پایل">
+        <label for="just-lab">فقط پایل</label>
+        <input type="checkbox" id="just-lab">
         <!-- <input type="number" placeholder="شماره پایل" name="pile" id="pile" required> -->
         <input type="submit" value="دریافت گزارش" name="file" id="search" />
-        <button dir="rtl" id="loading" class="btn btn-primary d-none" disabled>
+        <button dir="rtl" id="loading" class="d-none btn btn-primary" disabled>
           لطفا منتظر بمانید
           <span
             class="spinner-border spinner-border-sm"
@@ -78,17 +88,13 @@
             aria-hidden="true"
           ></span>
         </button>
-        <span class="d-none message1" id="span-counter"
-          >گزارشگیری مجدد تا
-          <span class="message2" id="time-counter"> 0 </span>ثانیه دیگر امکان
-          پذیر نمی باشد</span
-        >
+        <span class="d-none message1" id="span-counter">تا 30 ثانیه دیگر امکان گزارشگیری وجود ندارد</span>
       </form>
       <h1 class="d-none message1" id="message">
         به دلیل تعداد درخواست بالا، سرور پاسخگو نمی باشد.لطفا دقایقی دیگر تلاش
         نمایید
       </h1>
-      <h1 class="d-none message2" id="message-2">گزارش با موفقیت اخذ گردید</h1>
+      <h1 class="d-none message2" id="success-message">گزارش با موفقیت اخذ گردید</h1>
     </div>
     <hr />
     <%-body%>

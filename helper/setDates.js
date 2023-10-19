@@ -1,7 +1,7 @@
 import { jalaliToMiladi } from "./toMiladi.js";
 
 export function setDates(req) {
-    let{ start_at, end_at } = req.body;
+    let{ start_at, end_at,pile_number } = req.body;
 
     start_at = start_at.split("/");
     start_at = jalaliToMiladi(start_at[0], start_at[1], start_at[2]);
@@ -16,5 +16,5 @@ export function setDates(req) {
         Authorization: "Bearer " + token,
       },
     };
-    return {start_at,end_at,config}
+    return {start_at,end_at,pile_number ,config}
 }
