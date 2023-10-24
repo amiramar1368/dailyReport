@@ -436,7 +436,7 @@ export class Report {
 
   static async depo(req, res) {
     try {
-      const {  end_at, config } = setDates(req);
+      const { end_at, config } = setDates(req);
       const { data } = await axios.post(
         "/report/management/m13",
         { workday: end_at },
@@ -447,7 +447,7 @@ export class Report {
       return false;
     }
   }
-  
+
   static async lab(req, res) {
     try {
       const { pile_number, config } = setDates(req);
@@ -456,13 +456,13 @@ export class Report {
         { pile_number },
         config
       );
-      const records={
-        minig_block:0,
-        ton_80:0,      
-        ton_105:0,
-        magnet_depo:0,
-        other_depo:0    
-      }
+      const records = {
+        minig_block: 0,
+        ton_80: 0,
+        ton_105: 0,
+        magnet_depo: 0,
+        other_depo: 0,
+      };
       const blocks = Object.keys(data.sum);
       for (const block of blocks) {
         if (
@@ -472,19 +472,156 @@ export class Report {
           block == "D-CF3-LP" ||
           block == "D-DF"
         ) {
-          records.magnet_depo +=Number(data.sum[block]);
-        }else if(block.startsWith("D-")){
-          records.other_depo +=Number(data.sum[block]);
-        }else if(block=="80_Ton"){
-          records.ton_80 +=Number(data.sum[block]);
-        }else if(block=="115_Ton"){
-          records.ton_105 +=Number(data.sum[block]);
-        }else{
-          records.minig_block +=Number(data.sum[block]);
+          records.magnet_depo += Number(data.sum[block]);
+        } else if (block.startsWith("D-")) {
+          records.other_depo += Number(data.sum[block]);
+        } else if (block == "80_Ton") {
+          records.ton_80 += Number(data.sum[block]);
+        } else if (block == "115_Ton") {
+          records.ton_105 += Number(data.sum[block]);
+        } else {
+          records.minig_block += Number(data.sum[block]);
         }
       }
       res.json(records);
     } catch (err) {
+      return false;
+    }
+  }
+
+  static async stop(req, res) {
+    try {
+      const { start_at, end_at, config } = setDates(req);
+      const { data: truck700 } = await axios.post(
+        "/maintenance/reports/stops",
+        { start_at, end_at, group_id: 1, vehicle_type_id: 1 },
+        config
+      );
+      const { data: shovel700 } = await axios.post(
+        "/maintenance/reports/stops",
+        { start_at, end_at, group_id: 1, vehicle_type_id: 2 },
+        config
+      );
+      const record700 = {
+        truck: {
+          ready: 0,
+          maintenance: 0,
+          working: 0,
+        },
+        shovel: {
+          ready: 0,
+          maintenance: 0,
+          working: 0,
+        },
+      };
+      for (let i = 0; i < truck700.length; i++) {
+        record700.truck.maintenance += Number(truck700[i].maintenance) / 60;
+        record700.truck.ready += Number(truck700[i].ready) / 60;
+        record700.truck.working += Number(truck700[i].working) / 60;
+      }
+      for (let i = 0; i < shovel700.length; i++) {
+        if (shovel700[i].vehicle_name.includes("L-V") ||shovel700[i].vehicle_name.includes("LV")) {
+        }else{
+        record700.shovel.maintenance += Number(shovel700[i].maintenance) / 60;
+        record700.shovel.ready += Number(shovel700[i].ready) / 60;
+        record700.shovel.working += Number(shovel700[i].working) / 60;
+        }
+      }
+
+      const { data: truck742 } = await axios.post(
+        "/maintenance/reports/stops",
+        { start_at, end_at, group_id: 3, vehicle_type_id: 1 },
+        config
+      );
+      const { data: shovel742 } = await axios.post(
+        "/maintenance/reports/stops",
+        { start_at, end_at, group_id: 3, vehicle_type_id: 2 },
+        config
+      );
+      const record742 = {
+        truck: {
+          ready: 0,
+          maintenance: 0,
+          working: 0,
+        },
+        shovel: {
+          ready: 0,
+          maintenance: 0,
+          working: 0,
+        },
+      };
+      for (let i = 0; i < truck742.length; i++) {
+        if (
+          truck742[i].vehicle_name === "TA01" ||
+          truck742[i].vehicle_name === "TA13" ||
+          truck742[i].vehicle_name === "TA14" ||
+          truck742[i].vehicle_name === "TA15" ||
+          truck742[i].vehicle_name === "TA17" ||
+          truck742[i].vehicle_name === "TA19" ||
+          truck742[i].vehicle_name === "TA23" ||
+          truck742[i].vehicle_name === "TA24" ||
+          truck742[i].vehicle_name === "TA29" ||
+          truck742[i].vehicle_name === "TA301" ||
+          truck742[i].vehicle_name === "TA304" ||
+          truck742[i].vehicle_name === "TA305" ||
+          truck742[i].vehicle_name === "TA402" ||
+          truck742[i].vehicle_name === "TA406"
+        ) {
+        } else {
+          record742.truck.maintenance += Number(truck742[i].maintenance) / 60;
+          record742.truck.ready += Number(truck742[i].ready) / 60;
+          record742.truck.working += Number(truck742[i].working) / 60;
+        }
+      }
+      for (let i = 0; i < shovel742.length; i++) {
+        if (shovel742[i].vehicle_name.includes("L-V") ||shovel742[i].vehicle_name.includes("LV")) {
+        }else{
+          record742.shovel.maintenance += Number(shovel742[i].maintenance) / 60;
+          record742.shovel.ready += Number(shovel742[i].ready) / 60;
+          record742.shovel.working += Number(shovel742[i].working) / 60;
+        }
+      }
+
+      const { data: truckApadana } = await axios.post(
+        "/maintenance/reports/stops",
+        { start_at, end_at, group_id: 7, vehicle_type_id: 1 },
+        config
+      );
+      const { data: shovelApadana } = await axios.post(
+        "/maintenance/reports/stops",
+        { start_at, end_at, group_id: 7, vehicle_type_id: 2 },
+        config
+      );
+      const recordApadana = {
+        truck: {
+          ready: 0,
+          maintenance: 0,
+          working: 0,
+        },
+        shovel: {
+          ready: 0,
+          maintenance: 0,
+          working: 0,
+        },
+      };
+      for (let i = 0; i < truckApadana.length; i++) {
+        recordApadana.truck.maintenance +=
+          Number(truckApadana[i].maintenance) / 60;
+        recordApadana.truck.ready += Number(truckApadana[i].ready) / 60;
+        recordApadana.truck.working += Number(truckApadana[i].working) / 60;
+      }
+      for (let i = 0; i < shovelApadana.length; i++) {
+        if (shovelApadana[i].vehicle_name.includes("L-V") ||shovelApadana[i].vehicle_name.includes("LV")) {
+        }else{
+        recordApadana.shovel.maintenance +=
+          Number(shovelApadana[i].maintenance) / 60;
+        recordApadana.shovel.ready += Number(shovelApadana[i].ready) / 60;
+        recordApadana.shovel.working += Number(shovelApadana[i].working) / 60;
+        }
+      }
+      res.json({ record700, record742, recordApadana });
+    } catch (err) {
+      console.log(err);
       return false;
     }
   }

@@ -68,6 +68,13 @@ const minigBlock_pile = document.getElementById("minigBlock-pile");
 const smallTruck_pile = document.getElementById("smallTruck-pile");
 const bigTruck_pile = document.getElementById("bigTruck-pile");
 
+const stop_shovel_700 = document.getElementById("stop-shovel-700");
+const stop_shovel_742 = document.getElementById("stop-shovel-742");
+const stop_shovel_apadana = document.getElementById("stop-shovel-apadana");
+const stop_truck_700 = document.getElementById("stop-truck-700");
+const stop_truck_742 = document.getElementById("stop-truck-742");
+const stop_truck_apadana = document.getElementById("stop-truck-apadana");
+
 
 function countDown(time) {
   let i = time;
@@ -102,6 +109,7 @@ weekly_report.addEventListener("submit", async (event) => {
   let start_at = document.getElementById("start-at").value;
   let end_at = document.getElementById("end-at").value;
   let pile_number = document.getElementById("pile").value;
+
   if(just_lab.checked){
 const { data: lab } = await axios.post("/weekly-report/lab", {
   start_at,
@@ -117,6 +125,20 @@ minigBlock_pile.innerHTML = lab.minig_block
 smallTruck_pile .innerHTML = lab.ton_80
 bigTruck_pile .innerHTML = lab.ton_105
   }else{
+    const { data: stop } = await axios.post("/weekly-report/stop", {
+      start_at,
+      end_at,
+      pile_number
+    });
+    if (!stop) {
+      refreshPage();
+    }
+  stop_shovel_700.innerHTML =Number(stop.record700.shovel.maintenance).toFixed(2);
+  stop_shovel_742.innerHTML =Number(stop.record742.shovel.maintenance).toFixed(2);
+  stop_shovel_apadana.innerHTML =Number(stop.recordApadana.shovel.maintenance).toFixed(2);
+  stop_truck_700 .innerHTML =Number(stop.record700.truck.maintenance).toFixed(2);
+  stop_truck_742 .innerHTML =Number(stop.record742.truck.maintenance).toFixed(2);
+  stop_truck_apadana.innerHTML =Number(stop.recordApadana.truck.maintenance).toFixed(2);
   const { data: depoToCrusher } = await axios.post(
     "/weekly-report/depo-to-crusher",
     {

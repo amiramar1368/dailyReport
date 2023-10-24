@@ -298,7 +298,6 @@ report_form.addEventListener("submit", async (event) => {
   // let pile;
 
   const { data: pile } = await axios.post("/report/pile", { start_at });
-  console.log({pile});
   if (pile == "") {
     alert("مجددا لاگین نمایید");
     location.href = "/";
@@ -308,7 +307,6 @@ report_form.addEventListener("submit", async (event) => {
     return alert("گزارش Mis مشکل دارد");
   }
   pile_number.innerHTML = pile[pile.length - 1].pile;
-
   const { data: trips } = await axios.post("/report/trips", {
     start_at,
   }); 
@@ -729,7 +727,6 @@ report_form.addEventListener("submit", async (event) => {
   if (!stop) {
     refreshPage();
   }
-
   stop_shovel.innerHTML = (stop.stop_shovel / 60).toFixed(2);
   stop_truck.innerHTML = (stop.stop_truck / 60).toFixed(2);
   const { data: speed } = await axios.post("/report/speed", { start_at });
