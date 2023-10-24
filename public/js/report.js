@@ -50,6 +50,7 @@ const _4_bogh_700 = document.getElementById("4bogh-700");
 const _4_bogh_742 = document.getElementById("4bogh-742");
 const _4_bogh_Ap = document.getElementById("4bogh-Ap");
 const depoTocrusher_distance = document.getElementById("depoTocrusher-distance");
+const depoTocrusher_time = document.getElementById("depoTocrusher-time");
 
 const truck_700_number = document.getElementById("truck-700-number");
 const truck_742_number = document.getElementById("truck-742-number");
@@ -311,7 +312,7 @@ report_form.addEventListener("submit", async (event) => {
   const { data: trips } = await axios.post("/report/trips", {
     start_at,
   }); 
-  // console.log(trips);
+  
   mine_depo_to_depo.innerHTML = trips.trips700.DepoToDepo.mine_depo;
   other_depo_to_depo.innerHTML = trips.trips700.DepoToDepo.other_depo;
   
@@ -363,11 +364,12 @@ report_form.addEventListener("submit", async (event) => {
       depo_cr_distance += Number(allDepoToCR[i].cycle_distance);
     }
   }
-  const average_depo_to_cr_distance = depo_cr_distance/(allDepoToCR.length-number_of_over_distance)
   _4_bogh_700.innerHTML = JSON.stringify(final_4_bogh.Mo);
   _4_bogh_742.innerHTML = JSON.stringify(final_4_bogh.As);
   _4_bogh_Ap.innerHTML = JSON.stringify(final_4_bogh.Ap);
-  depoTocrusher_distance.innerHTML = ((depo_cr_distance+(average_depo_to_cr_distance*number_of_over_distance))/1000).toFixed(2);
+  depoTocrusher_distance.innerHTML = (trips.trips700.total_distance).toFixed(2);
+  depoTocrusher_time.innerHTML = (trips.trips700.total_time).toFixed(2);
+
   const { data: extraction } = await axios.post("/report/extraction", {
     start_at,
     pile,
