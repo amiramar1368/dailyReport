@@ -12,4 +12,5 @@ router.post("/weighbridge",Report.weighbridge);
 router.post("/depo",Report.depo);
 router.post("/lab",Report.lab);
 router.post("/stop",Report.stop);
+router.post("/crusher-feed",Report.crusherFeed);
 export default router;

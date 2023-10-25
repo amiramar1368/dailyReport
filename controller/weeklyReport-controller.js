@@ -447,6 +447,19 @@ export class Report {
       return false;
     }
   }
+  static async crusherFeed(req, res) {
+    try {
+      const {start_at, end_at, config } = setDates(req);
+      const { data } = await axios.post(
+        "/report/crusher/crusher-c9",
+        {start:start_at, end: end_at },
+        config
+      );
+      res.json(data);
+    } catch (err) {
+      return false;
+    }
+  }
 
   static async lab(req, res) {
     try {
