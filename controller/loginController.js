@@ -29,10 +29,9 @@ export class Login {
        // process.env.token = data.user.token;
          process.env.token = data.access_token;
         process.env.full_name = data.user.full_name;
-        var can_access = personal_code.includes(
+        let can_access = personal_code.includes(
           Number(data.user.personnel_code)
         );
-        var can_access = true
         process.env.can_access = can_access;
         res.render("home", { error: "", can_access });
       } else {
