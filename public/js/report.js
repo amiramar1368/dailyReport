@@ -297,20 +297,20 @@ report_form.addEventListener("submit", async (event) => {
   start_at = date_input.value;
   // let pile;
 
-  const { data: pile } = await axios.post("/report/pile", { start_at });
-  if (pile == "") {
+  let { data: pileNumber } = await axios.post("/report/pile", { start_at });
+  if (pileNumber == "") {
     alert("مجددا لاگین نمایید");
     location.href = "/";
     return;
   }
-  if (pile.length < 1 || pile.length > 2) {
+  if (pileNumber.length < 1 || pileNumber.length > 2) {
     return alert("گزارش Mis مشکل دارد");
   }
-  pile_number.innerHTML = pile[pile.length - 1].pile;
+  pile_number.innerHTML = pileNumber[pileNumber.length - 1].pile;
   const { data: trips } = await axios.post("/report/trips", {
     start_at,
-  }); 
-  
+  });
+   pile=pileNumber[pileNumber.length - 1].pile;
   mine_depo_to_depo.innerHTML = trips.trips700.DepoToDepo.mine_depo;
   other_depo_to_depo.innerHTML = trips.trips700.DepoToDepo.other_depo;
   
@@ -757,7 +757,6 @@ report_form.addEventListener("submit", async (event) => {
   if (!mis) {
     refreshPage();
   }
-
   for (let i = 0; i < mis.stop_start.length; i++) {
     if (mis.stop_start[i].reason_id == "113") {
       truck_stop.innerHTML = mis.stop_start[i].sumduration;
