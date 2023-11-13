@@ -18,6 +18,7 @@ import { abroft_report } from "../helper/abroft.js";
 import { pileNumber_report } from "../helper/pileNumber.js";
 import {sample_report} from '../helper/sample.js';
 import {trip_report} from '../helper/trip.js';
+import { fuel_report, fuel_report_all } from "../helper/fuel.js";
 
 export class Report {
     static daily(req,res) {
@@ -38,8 +39,7 @@ export class Report {
       var abroft_700 = await abroft_report(start_at, 1, config);
       var abroft_742 = await abroft_report(start_at, 3, config);
       var abroft_Apa = await abroft_report(start_at, 7, config);
-      var abroft_Beh = await abroft_report(start_at, 6, config);
-      res.json({ abroft_700, abroft_742, abroft_Apa, abroft_Beh });
+      res.json({ abroft_700, abroft_742, abroft_Apa });
     } catch (err) {
       res.json(false);
       console.log(err);
@@ -59,12 +59,11 @@ export class Report {
       var extraction_700 = await extraction_report(start_at, 1, config);
       var extraction_742 = await extraction_report(start_at, 3, config);
       var extraction_Apa = await extraction_report(start_at, 7, config);
-      var extraction_Beh = await extraction_report(start_at, 6, config);
+      // var extraction_Beh = await extraction_report(start_at, 6, config);
       res.json({
         extraction_700,
         extraction_742,
         extraction_Apa,
-        extraction_Beh,
       });
     } catch (err) {
       res.json(false);
@@ -84,9 +83,9 @@ export class Report {
       var unloading_700 = await unloading_report(start_at, 1, config);
       var unloading_742 = await unloading_report(start_at, 3, config);
       var unloading_Apa = await unloading_report(start_at, 7, config);
-      var unloading_Beh = await unloading_report(start_at, 6, config);
+      // var unloading_Beh = await unloading_report(start_at, 6, config);
       // res.json({unloading_Beh});
-      res.json({ unloading_700, unloading_742, unloading_Apa, unloading_Beh });
+      res.json({ unloading_700, unloading_742, unloading_Apa });
     } catch (err) {
       res.json(false);
     }
@@ -105,8 +104,8 @@ export class Report {
       var transport_700 = await transport_report(start_at, 1, config);
       var transport_742 = await transport_report(start_at, 3, config);
       var transport_Apa = await transport_report(start_at, 7, config);
-      var transport_Beh = await transport_report(start_at, 6, config);
-      res.json({ transport_700, transport_742, transport_Apa, transport_Beh });
+      // var transport_Beh = await transport_report(start_at, 6, config);
+      res.json({ transport_700, transport_742, transport_Apa });
     } catch (err) {
       res.json(false);
     }
@@ -185,9 +184,10 @@ export class Report {
         },
       };
       var { start_at } = req.body;
-      var stop_truck = await stop_report(start_at, start_at, 1, 1, config);
-      var stop_shovel = await stop_report(start_at, start_at, 2, 1, config);
-      res.json({ stop_truck, stop_shovel });
+      var record_700 = await stop_report(start_at, start_at,1,config);
+      var record_742 = await stop_report(start_at, start_at,3,config);
+      var record_Ap = await stop_report(start_at, start_at,7,config);
+      res.json({ record_700,record_742,record_Ap });
     } catch (err) {
       res.json(false);
     }
@@ -206,8 +206,8 @@ export class Report {
       var speed_700 = await speed_report(start_at, 1, config);
       var speed_742 = await speed_report(start_at, 3, config);
       var speed_Apa = await speed_report(start_at, 7, config);
-      var speed_Beh = await speed_report(start_at, 6, config);
-      res.json({ speed_700, speed_742, speed_Apa, speed_Beh });
+      // var speed_Beh = await speed_report(start_at, 6, config);
+      res.json({ speed_700, speed_742, speed_Apa });
     } catch (err) {
       res.json(false);
     }
@@ -295,6 +295,45 @@ export class Report {
       const tripsAp = await trip_report(start_at,7, config);
       return res.json({trips700,trips742,tripsAp});
     } catch (err) {
+      res.json(false);
+    }
+  }
+
+  static async fuel(req, res) {
+    try {
+      var token = process.env.token;
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      };
+      var { start_at } = req.body;
+      const record_700 = await fuel_report(start_at,[1],config);
+      const record_742 = await fuel_report(start_at,[3],config);
+      const record_Apa = await fuel_report(start_at,[7],config);
+
+      return res.json({record_700,record_742,record_Apa});
+    } catch (err) {
+      console.log(err);
+      res.json(false);
+    }
+  }
+  static async allFuel(req, res) {
+    try {
+      var token = process.env.token;
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      };
+      var { start_at } = req.body;
+      const record = await fuel_report_all(start_at,config)
+
+      return res.json(record);
+    } catch (err) {
+      console.log(err);
       res.json(false);
     }
   }

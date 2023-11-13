@@ -1,4 +1,4 @@
-export const port = 3100;
+export const port = 7100;
 export const baseURL="http://192.168.10.20"
 export const tonnages = {
 belaz_ore_mine:105,

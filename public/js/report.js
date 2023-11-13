@@ -16,7 +16,7 @@ const time_counter = document.getElementById("time-counter");
 const truck700_hour = document.getElementById("truck700-hour");
 const truck742_hour = document.getElementById("truck742-hour");
 const truck_apa_hour = document.getElementById("truck-apa-hour");
-const truck_beh_hour = document.getElementById("truck-beh-hour");
+// const truck_beh_hour = document.getElementById("truck-beh-hour");
 
 const dmh_1 = document.getElementById("dmh-1");
 const dmh_2 = document.getElementById("dmh-2");
@@ -34,12 +34,12 @@ const loader_tonnage = document.getElementById("loader-tonnage");
 const truck700_dis = document.getElementById("truck700-dis");
 const truck742_dis = document.getElementById("truck742-dis");
 const truck_apa_dis = document.getElementById("truck-apa-dis");
-const truck_beh_dis = document.getElementById("truck-beh-dis");
+// const truck_beh_dis = document.getElementById("truck-beh-dis");
 
 const shovel_700_hour = document.getElementById("shovel-700-hour");
 const shovel_742_hour = document.getElementById("shovel-742-hour");
 const shovel_apa_hour = document.getElementById("shovel-apa-hour");
-const shovel_beh_hour = document.getElementById("shovel-beh-hour");
+// const shovel_beh_hour = document.getElementById("shovel-beh-hour");
 
 const drillwagon_hour = document.getElementById("drillwagon-hour");
 const drillrig_hour = document.getElementById("drillrig-hour");
@@ -55,12 +55,12 @@ const depoTocrusher_time = document.getElementById("depoTocrusher-time");
 const truck_700_number = document.getElementById("truck-700-number");
 const truck_742_number = document.getElementById("truck-742-number");
 const truck_apa_number = document.getElementById("truck-apa-number");
-const truck_beh_number = document.getElementById("truck-beh-number");
+// const truck_beh_number = document.getElementById("truck-beh-number");
 
 const shovel_700_number = document.getElementById("shovel-700-number");
 const shovel_742_number = document.getElementById("shovel-742-number");
 const shovel_apa_number = document.getElementById("shovel-apa-number");
-const shovel_beh_number = document.getElementById("shovel-beh-number");
+// const shovel_beh_number = document.getElementById("shovel-beh-number");
 
 const omz_number = document.getElementById("omz-number");
 const dmh_number = document.getElementById("dmh-number");
@@ -96,31 +96,31 @@ const mine_to_cr_tonnage_742 = document.getElementById(
 const mine_to_cr_tonnage_apa = document.getElementById(
   "apa-mine-to-cr-tonnage"
 );
-const mine_to_cr_tonnage_beh = document.getElementById(
-  "beh-mine-to-cr-tonnage"
-);
+// const mine_to_cr_tonnage_beh = document.getElementById(
+//   "beh-mine-to-cr-tonnage"
+// );
 
 const mine_to_magnet_700 = document.getElementById("700-mine-to-magnet");
 const mine_to_magnet_742 = document.getElementById("742-mine-to-magnet");
 const mine_to_magnet_apa = document.getElementById("apa-mine-to-magnet");
-const mine_to_magnet_beh = document.getElementById("beh-mine-to-magnet");
+// const mine_to_magnet_beh = document.getElementById("beh-mine-to-magnet");
 
 const depo_to_cr = document.getElementById("depo-to-cr");
 
 const mine_to_road_700 = document.getElementById("700-mine-to-road");
 const mine_to_road_742 = document.getElementById("742-mine-to-road");
 const mine_to_road_apa = document.getElementById("apa-mine-to-road");
-const mine_to_road_beh = document.getElementById("beh-mine-to-road");
+// const mine_to_road_beh = document.getElementById("beh-mine-to-road");
 
 const east_tonnage_700 = document.getElementById("700-east-tonnage");
 const east_tonnage_742 = document.getElementById("742-east-tonnage");
 const east_tonnage_apa = document.getElementById("apa-east-tonnage");
-const east_tonnage_beh = document.getElementById("beh-east-tonnage");
+// const east_tonnage_beh = document.getElementById("beh-east-tonnage");
 
 const west_tonnage_700 = document.getElementById("700-west-tonnage");
 const west_tonnage_742 = document.getElementById("742-west-tonnage");
 const west_tonnage_apa = document.getElementById("apa-west-tonnage");
-const west_tonnage_beh = document.getElementById("beh-west-tonnage");
+// const west_tonnage_beh = document.getElementById("beh-west-tonnage");
 
 const waste_road_tonnage_700 = document.getElementById(
   "700-waste-road-tonnage"
@@ -131,9 +131,9 @@ const waste_road_tonnage_742 = document.getElementById(
 const waste_road_tonnage_apa = document.getElementById(
   "apa-waste-road-tonnage"
 );
-const waste_road_tonnage_beh = document.getElementById(
-  "beh-waste-road-tonnage"
-);
+// const waste_road_tonnage_beh = document.getElementById(
+//   "beh-waste-road-tonnage"
+// );
 
 const depo_magnet_to_cr = document.getElementById("depo-magnet-to-cr");
 const depo_oxide_to_cr = document.getElementById("depo-oxide-to-cr");
@@ -182,12 +182,12 @@ const stop_truck = document.getElementById("stop-truck");
 const speed_700 = document.getElementById("speed-700");
 const speed_742 = document.getElementById("speed-742");
 const speed_apa = document.getElementById("speed-apa");
-const speed_beh = document.getElementById("speed-beh");
+// const speed_beh = document.getElementById("speed-beh");
 
 const speed_duration_700 = document.getElementById("speed-duration-700");
 const speed_duration_742 = document.getElementById("speed-duration-742");
 const speed_duration_apa = document.getElementById("speed-duration-apa");
-const speed_duration_beh = document.getElementById("speed-duration-beh");
+// const speed_duration_beh = document.getElementById("speed-duration-beh");
 
 const last_sample = document.getElementById("last-sample");
 const pile_Fe = document.getElementById("pile-fe");
@@ -203,7 +203,7 @@ const active_cr = document.getElementById("active-cr");
 const abroft_700 = document.getElementById("abroft-700");
 const abroft_742 = document.getElementById("abroft-742");
 const abroft_apa = document.getElementById("abroft-apa");
-const abroft_beh = document.getElementById("abroft-beh");
+// const abroft_beh = document.getElementById("abroft-beh");
 
 const message = document.getElementById("message");
 const message_success = document.getElementById("success-message");
@@ -212,22 +212,60 @@ const transport_depo_700 = document.getElementById("transport-depo-700");
 const transport_ore_700 = document.getElementById("transport-ore-700");
 const transport_ore_742 = document.getElementById("transport-ore-742");
 const transport_ore_apa = document.getElementById("transport-ore-apa");
-const transport_ore_beh = document.getElementById("transport-ore-beh");
+// const transport_ore_beh = document.getElementById("transport-ore-beh");
 
 const transport_waste_700 = document.getElementById("transport-waste-700");
 const transport_waste_742 = document.getElementById("transport-waste-742");
 const transport_waste_apa = document.getElementById("transport-waste-apa");
-const transport_waste_beh = document.getElementById("transport-waste-beh");
+// const transport_waste_beh = document.getElementById("transport-waste-beh");
 
 const over_hour_700 = document.getElementById("over-hour-700");
 const over_hour_742 = document.getElementById("over-hour-742");
 const over_hour_apa = document.getElementById("over-hour-apa");
-const over_hour_beh = document.getElementById("over-hour-beh");
+// const over_hour_beh = document.getElementById("over-hour-beh");
 
 const diff_700 = document.getElementById("diff-700");
 const diff_742 = document.getElementById("diff-742");
 const diff_apa = document.getElementById("diff-apa");
-const diff_beh = document.getElementById("diff-beh");
+// const diff_beh = document.getElementById("diff-beh");
+
+const stop_shovel_700 = document.getElementById("stop-shovel-700");
+const stop_loader_700 = document.getElementById("stop-loader-700");
+const stop_shovel_742 = document.getElementById("stop-shovel-742");
+const stop_shovel_Apa = document.getElementById("stop-shovel-apadana");
+
+const stop_truck_700 = document.getElementById("stop-truck-700");
+const stop_truck_742 = document.getElementById("stop-truck-742");
+const stop_truck_Apa = document.getElementById("stop-truck-apadana");
+
+const working_truck_700 = document.getElementById("working-truck-700");
+const working_truck_742 = document.getElementById("working-truck-742");
+const working_truck_Apa = document.getElementById("working-truck-apadana");
+
+const ready_truck_700 = document.getElementById("ready-truck-700");
+const ready_truck_742 = document.getElementById("ready-truck-742");
+const ready_truck_Apa = document.getElementById("ready-truck-apadana");
+
+const ready_shovel_700 = document.getElementById("ready-shovel-700");
+const ready_loader_700 = document.getElementById("ready-loader-700");
+const ready_shovel_742 = document.getElementById("ready-shovel-742");
+const ready_shovel_Apa = document.getElementById("ready-shovel-apadana");
+
+const working_shovel_700 = document.getElementById("working-shovel-700");
+const working_loader_700 = document.getElementById("working-loader-700");
+const working_shovel_742 = document.getElementById("working-shovel-742");
+const working_shovel_Apa = document.getElementById("working-shovel-apadana");
+
+const fuel_shovel_700 = document.getElementById("fuel-shovel-700");
+const fuel_shovel_742 = document.getElementById("fuel-shovel-742");
+const fuel_shovel_apadana = document.getElementById("fuel-shovel-apadana");
+const fuel_truck_700 = document.getElementById("fuel-truck-700");
+const fuel_truck_742 = document.getElementById("fuel-truck-742");
+const fuel_truck_apadana = document.getElementById("fuel-truck-apadana");
+
+const mis_tonnage = document.getElementById("mis-tonnage");
+
+const all_fuel = document.getElementById("all-fuel");
 
 const seperation_saha_to_cr = document.querySelectorAll(
   "div#saha-report td[id]"
@@ -238,25 +276,6 @@ async function get_report(report_name) {
   const { data } = await axios.post("/report/extraction", { start_at, pile });
   return data;
 }
-
-//  function cache_weighbridge(func) {
-//      let cache = new Map();
-//      return async function(report_name){
-//         const start = Date.now();
-//         if(cache.has(report_name)){
-//             let rep =await cache.get(report_name)
-//            console.log(rep);
-//            console.log(Date.now()-start);
-//             return cache.get(report_name);
-//         }else{
-//             let result = func(report_name);
-//             cache.set(report_name,result);
-//             console.log(Date.now()-start);
-//             return result;
-//         }
-//     }
-// }
-// get_report = cache_weighbridge(get_report)
 
 function refreshPage() {
   message.classList.remove("d-none");
@@ -307,6 +326,52 @@ report_form.addEventListener("submit", async (event) => {
     return alert("گزارش Mis مشکل دارد");
   }
   pile_number.innerHTML = pileNumber[pileNumber.length - 1].pile;
+
+  const { data: allFuels } = await axios.post("/report/all-fuel", { start_at });
+  if (!stop) {
+    refreshPage();
+  }
+  all_fuel.innerHTML = Number(allFuels).toFixed(3)
+  const { data: fuels } = await axios.post("/report/fuel", { start_at });
+  if (!stop) {
+    refreshPage();
+  }
+  fuel_shovel_700.innerHTML= (fuels.record_700.shovel ).toFixed(3)
+  fuel_shovel_742.innerHTML= (fuels.record_742.shovel ).toFixed(3)
+  fuel_shovel_apadana.innerHTML= (fuels.record_Apa.shovel ).toFixed(3)
+  fuel_truck_700.innerHTML= (fuels.record_700.truck ).toFixed(3)
+  fuel_truck_742.innerHTML= (fuels.record_742.truck ).toFixed(3)
+  fuel_truck_apadana.innerHTML= (fuels.record_Apa.truck ).toFixed(3)
+  const { data: stops } = await axios.post("/report/stop", { start_at });
+  if (!stop) {
+    refreshPage();
+  }
+  stop_shovel_700.innerHTML = (stops.record_700.stop.shovel / 60).toFixed(2);
+  stop_loader_700.innerHTML = (stops.record_700.stop.loader / 60).toFixed(2);
+  stop_shovel_742.innerHTML = (stops.record_742.stop.shovel / 60).toFixed(2);
+  stop_shovel_Apa.innerHTML = (stops.record_Ap.stop.shovel / 60).toFixed(2);
+
+  working_truck_700.innerHTML=(stops.record_700.working.truck / 60).toFixed(2);
+  working_truck_742.innerHTML = (stops.record_742.working.truck / 60).toFixed(2);
+  working_truck_Apa.innerHTML = (stops.record_Ap.working.truck / 60).toFixed(2);
+
+  ready_truck_700.innerHTML=(stops.record_700.ready.truck / 60).toFixed(2);
+  ready_truck_742.innerHTML = (stops.record_742.ready.truck / 60).toFixed(2);
+  ready_truck_Apa.innerHTML = (stops.record_Ap.ready.truck / 60).toFixed(2);
+  
+  stop_truck_700.innerHTML=(stops.record_700.stop.truck / 60).toFixed(2);
+  stop_truck_742.innerHTML = (stops.record_742.stop.truck / 60).toFixed(2);
+  stop_truck_Apa.innerHTML = (stops.record_Ap.stop.truck / 60).toFixed(2);
+
+  ready_shovel_700.innerHTML=(stops.record_700.ready.shovel / 60).toFixed(2);
+  ready_loader_700.innerHTML = (stops.record_700.ready.loader / 60).toFixed(2);
+  ready_shovel_742.innerHTML = (stops.record_742.ready.shovel / 60).toFixed(2);
+  ready_shovel_Apa.innerHTML = (stops.record_Ap.ready.shovel / 60).toFixed(2);
+  working_shovel_700.innerHTML=(stops.record_700.working.shovel / 60).toFixed(2);
+  working_loader_700.innerHTML = (stops.record_700.working.loader / 60).toFixed(2);
+  working_shovel_742.innerHTML = (stops.record_742.working.shovel / 60).toFixed(2);
+  working_shovel_Apa.innerHTML = (stops.record_Ap.working.shovel / 60).toFixed(2);
+
   const { data: trips } = await axios.post("/report/trips", {
     start_at,
   });
@@ -368,6 +433,44 @@ report_form.addEventListener("submit", async (event) => {
   depoTocrusher_distance.innerHTML = (trips.trips700.total_distance).toFixed(2);
   depoTocrusher_time.innerHTML = (trips.trips700.total_time).toFixed(2);
 
+  
+  const { data: mis } = await axios.post("/report/mis", { start_at, pile });
+  if (!mis) {
+    refreshPage();
+  }
+  mis_tonnage.innerHTML = Number(mis.additional_info.day_direct_tonnage)+
+  Number(mis.additional_info.day_yard_tonnage)+
+  Number(mis.additional_info.day_yard_tonnage_old)+
+  Number(mis.additional_info.night_direct_tonnage)+
+  Number(mis.additional_info.night_yard_tonnage)+
+  Number(mis.additional_info.night_yard_tonnage_old);
+
+  for (let i = 0; i < mis.stop_start.length; i++) {
+    if (mis.stop_start[i].reason_id == "113") {
+      truck_stop.innerHTML = mis.stop_start[i].sumduration;
+    } else if (mis.stop_start[i].reason_id == "121") {
+      shovel_stop.innerHTML = mis.stop_start[i].sumduration;
+    }
+  }
+  active_cr.innerHTML = "CR-1 & CR-2";
+  let cr1_tonnage =
+    mis.additional_info.day_yard_tonnage_old +
+    mis.additional_info.night_yard_tonnage_old;
+  let cr2_tonnage =
+    mis.additional_info.day_yard_tonnage +
+    mis.additional_info.night_yard_tonnage;
+
+  if (cr1_tonnage == 0) {
+    active_cr.innerHTML = "CR-2";
+  }
+  if (cr2_tonnage == 0) {
+    active_cr.innerHTML = "CR-1";
+  }
+  if (cr1_tonnage + cr2_tonnage == 0) {
+    active_cr.innerHTML = "-";
+  }
+  crusher_stop.innerHTML = mis.sum.total_duration;
+
   const { data: extraction } = await axios.post("/report/extraction", {
     start_at,
     pile,
@@ -381,8 +484,7 @@ report_form.addEventListener("submit", async (event) => {
     extraction.extraction_700.over_houres[742].length + "دستگاه ";
   over_hour_apa.innerHTML =
     extraction.extraction_700.over_houres.apa.length + "دستگاه ";
-  over_hour_beh.innerHTML =
-    extraction.extraction_700.over_houres.beh.length + "دستگاه ";
+  // over_hour_beh.innerHTML =extraction.extraction_700.over_houres.beh.length + "دستگاه ";
 
   omz_1.innerHTML = extraction.extraction_700.omz_1.toFixed(2);
   omz_2.innerHTML = extraction.extraction_700.omz_2.toFixed(2);
@@ -397,15 +499,13 @@ report_form.addEventListener("submit", async (event) => {
 
   truck700_hour.innerHTML = extraction.extraction_700.truck_workTime.toFixed(2);
   truck742_hour.innerHTML = extraction.extraction_742.truck_workTime.toFixed(2);
-  truck_apa_hour.innerHTML =
-    extraction.extraction_Apa.truck_workTime.toFixed(2);
-  truck_beh_hour.innerHTML =
-    extraction.extraction_Beh.truck_workTime.toFixed(2);
+  truck_apa_hour.innerHTML =extraction.extraction_Apa.truck_workTime.toFixed(2);
+  // truck_beh_hour.innerHTML =extraction.extraction_Beh.truck_workTime.toFixed(2);
 
   truck700_dis.innerHTML = extraction.extraction_700.truck_distance.toFixed(2);
   truck742_dis.innerHTML = extraction.extraction_742.truck_distance.toFixed(2);
   truck_apa_dis.innerHTML = extraction.extraction_Apa.truck_distance.toFixed(2);
-  truck_beh_dis.innerHTML = extraction.extraction_Beh.truck_distance.toFixed(2);
+  // truck_beh_dis.innerHTML = extraction.extraction_Beh.truck_distance.toFixed(2);
 
   shovel_700_hour.innerHTML =
     extraction.extraction_700.shovel_workTime.toFixed(2);
@@ -413,8 +513,7 @@ report_form.addEventListener("submit", async (event) => {
     extraction.extraction_742.shovel_workTime.toFixed(2);
   shovel_apa_hour.innerHTML =
     extraction.extraction_Apa.shovel_workTime.toFixed(2);
-  shovel_beh_hour.innerHTML =
-    extraction.extraction_Beh.shovel_workTime.toFixed(2);
+  // shovel_beh_hour.innerHTML =extraction.extraction_Beh.shovel_workTime.toFixed(2);
 
   truck_700_number.innerHTML =
     extraction.extraction_700.truck_number.toFixed(2);
@@ -422,8 +521,7 @@ report_form.addEventListener("submit", async (event) => {
     extraction.extraction_742.truck_number.toFixed(2);
   truck_apa_number.innerHTML =
     extraction.extraction_Apa.truck_number.toFixed(2);
-  truck_beh_number.innerHTML =
-    extraction.extraction_Beh.truck_number.toFixed(2);
+  // truck_beh_number.innerHTML =extraction.extraction_Beh.truck_number.toFixed(2);
 
   shovel_700_number.innerHTML =
     extraction.extraction_700.shovel_number.toFixed(2);
@@ -431,8 +529,7 @@ report_form.addEventListener("submit", async (event) => {
     extraction.extraction_742.shovel_number.toFixed(2);
   shovel_apa_number.innerHTML =
     extraction.extraction_Apa.shovel_number.toFixed(2);
-  shovel_beh_number.innerHTML =
-    extraction.extraction_Beh.shovel_number.toFixed(2);
+  // shovel_beh_number.innerHTML =extraction.extraction_Beh.shovel_number.toFixed(2);
 
   omz_number.innerHTML = extraction.extraction_700.omz_number;
   dmh_number.innerHTML = extraction.extraction_700.dmh_number;
@@ -496,15 +593,14 @@ report_form.addEventListener("submit", async (event) => {
   diff_700.innerHTML = unloading.unloading_700.compare;
   diff_742.innerHTML = unloading.unloading_742.compare;
   diff_apa.innerHTML = unloading.unloading_Apa.compare;
-  diff_beh.innerHTML = unloading.unloading_Beh.compare;
+  // diff_beh.innerHTML = unloading.unloading_Beh.compare;
   mine_to_cr_tonnage_700.innerHTML =
     unloading.unloading_700.ore_mine_to_cr_tonnage;
   mine_to_cr_tonnage_742.innerHTML =
     unloading.unloading_742.ore_mine_to_cr_tonnage;
   mine_to_cr_tonnage_apa.innerHTML =
     unloading.unloading_Apa.ore_mine_to_cr_tonnage;
-  mine_to_cr_tonnage_beh.innerHTML =
-    unloading.unloading_Beh.ore_mine_to_cr_tonnage;
+  // mine_to_cr_tonnage_beh.innerHTML =unloading.unloading_Beh.ore_mine_to_cr_tonnage;
 
   mine_to_magnet_700.innerHTML =
     unloading.unloading_700.ore_mine_to_magnet_tonnage;
@@ -512,28 +608,27 @@ report_form.addEventListener("submit", async (event) => {
     unloading.unloading_742.ore_mine_to_magnet_tonnage;
   mine_to_magnet_apa.innerHTML =
     unloading.unloading_Apa.ore_mine_to_magnet_tonnage;
-  mine_to_magnet_beh.innerHTML =
-    unloading.unloading_Beh.ore_mine_to_magnet_tonnage;
+  // mine_to_magnet_beh.innerHTML =unloading.unloading_Beh.ore_mine_to_magnet_tonnage;
 
   mine_to_road_700.innerHTML = unloading.unloading_700.ore_mine_to_road_tonnage;
   mine_to_road_742.innerHTML = unloading.unloading_742.ore_mine_to_road_tonnage;
   mine_to_road_apa.innerHTML = unloading.unloading_Apa.ore_mine_to_road_tonnage;
-  mine_to_road_beh.innerHTML = unloading.unloading_Beh.ore_mine_to_road_tonnage;
+  // mine_to_road_beh.innerHTML = unloading.unloading_Beh.ore_mine_to_road_tonnage;
 
   east_tonnage_700.innerHTML = unloading.unloading_700.waste_east_tonnage;
   east_tonnage_742.innerHTML = unloading.unloading_742.waste_east_tonnage;
   east_tonnage_apa.innerHTML = unloading.unloading_Apa.waste_east_tonnage;
-  east_tonnage_beh.innerHTML = unloading.unloading_Beh.waste_east_tonnage;
+  // east_tonnage_beh.innerHTML = unloading.unloading_Beh.waste_east_tonnage;
 
   west_tonnage_700.innerHTML = unloading.unloading_700.waste_west_tonnage;
   west_tonnage_742.innerHTML = unloading.unloading_742.waste_west_tonnage;
   west_tonnage_apa.innerHTML = unloading.unloading_Apa.waste_west_tonnage;
-  west_tonnage_beh.innerHTML = unloading.unloading_Beh.waste_west_tonnage;
+  // west_tonnage_beh.innerHTML = unloading.unloading_Beh.waste_west_tonnage;
 
   waste_road_tonnage_700.innerHTML = unloading.unloading_700.waste_road_tonnage;
   waste_road_tonnage_742.innerHTML = unloading.unloading_742.waste_road_tonnage;
   waste_road_tonnage_apa.innerHTML = unloading.unloading_Apa.waste_road_tonnage;
-  waste_road_tonnage_beh.innerHTML = unloading.unloading_Beh.waste_road_tonnage;
+  // waste_road_tonnage_beh.innerHTML = unloading.unloading_Beh.waste_road_tonnage;
 
   const { data: abroft } = await axios.post("/report/abroft", {
     start_at,
@@ -545,7 +640,7 @@ report_form.addEventListener("submit", async (event) => {
   abroft_700.innerHTML = abroft.abroft_700.moj;
   abroft_742.innerHTML = abroft.abroft_742.asfalt;
   abroft_apa.innerHTML = abroft.abroft_Apa.apa;
-  abroft_beh.innerHTML = abroft.abroft_Beh.beh;
+  // abroft_beh.innerHTML = 0;
   const { data: transport } = await axios.post("/report/transport", {
     start_at,
     pile,
@@ -557,14 +652,51 @@ report_form.addEventListener("submit", async (event) => {
   transport_ore_700.innerHTML = transport.transport_700.ore;
   transport_ore_742.innerHTML = transport.transport_742.ore;
   transport_ore_apa.innerHTML = transport.transport_Apa.ore;
-  transport_ore_beh.innerHTML = transport.transport_Beh.ore;
+  // transport_ore_beh.innerHTML = transport.transport_Beh.ore;
   transport_waste_700.innerHTML = transport.transport_700.waste;
   transport_waste_742.innerHTML = transport.transport_742.waste;
   transport_waste_apa.innerHTML = transport.transport_Apa.waste;
-  transport_waste_beh.innerHTML = transport.transport_Beh.waste;
+  // transport_waste_beh.innerHTML = transport.transport_Beh.waste;
 
   depo_to_cr.innerHTML = transport.transport_700.depo;
 
+  const { data: depo } = await axios.post("/report/depo", { start_at, pile });
+  if (!depo) {
+    refreshPage();
+  }
+
+  magnet_depo.innerHTML = depo.magnet;
+  other_depo.innerHTML = depo.other;
+  robat_depo.innerHTML = depo.robat;
+  novin_depo.innerHTML = depo.novin;
+
+  
+  const { data: speed } = await axios.post("/report/speed", { start_at });
+  if (!speed) {
+    refreshPage();
+  }
+  speed_700.innerHTML = speed.speed_700.speed.toFixed(2);
+  speed_742.innerHTML = speed.speed_742.speed.toFixed(2);
+  speed_apa.innerHTML = speed.speed_Apa.speed.toFixed(2);
+  // speed_beh.innerHTML = speed.speed_Beh.speed.toFixed(2);
+  speed_duration_700.innerHTML = speed.speed_700.duration;
+  speed_duration_742.innerHTML = speed.speed_742.duration;
+  speed_duration_apa.innerHTML = speed.speed_Apa.duration;
+  // speed_duration_beh.innerHTML = speed.speed_Beh.duration;
+
+  const { data: lab } = await axios.post("/report/lab", { start_at, pile });
+  if (!lab) {
+    refreshPage();
+  }
+  //   separation
+  last_sample.innerHTML = lab.last_sample;
+  pile_Fe.innerHTML = Number(lab.average.fe).toFixed(2);
+  pile_M.innerHTML = Number(lab.average.m).toFixed(2);
+  pile_FeO.innerHTML = Number(lab.average.feo).toFixed(2);
+  pile_P.innerHTML = Number(lab.average.p).toFixed(3);
+
+  //! *****************
+setTimeout(async()=>{
   const { data: weighbridge } = await axios.post("/report/weighbridge", {
     start_at,
     pile: 918,
@@ -712,85 +844,16 @@ report_form.addEventListener("submit", async (event) => {
       seperation_saha_to_cr[i].innerHTML = number;
     }
   }
-
-  const { data: depo } = await axios.post("/report/depo", { start_at, pile });
-  if (!depo) {
-    refreshPage();
-  }
-
-  magnet_depo.innerHTML = depo.magnet;
-  other_depo.innerHTML = depo.other;
-  robat_depo.innerHTML = depo.robat;
-  novin_depo.innerHTML = depo.novin;
-
-  const { data: stop } = await axios.post("/report/stop", { start_at });
-  if (!stop) {
-    refreshPage();
-  }
-  stop_shovel.innerHTML = (stop.stop_shovel / 60).toFixed(2);
-  stop_truck.innerHTML = (stop.stop_truck / 60).toFixed(2);
-  const { data: speed } = await axios.post("/report/speed", { start_at });
-  if (!speed) {
-    refreshPage();
-  }
-  speed_700.innerHTML = speed.speed_700.speed.toFixed(2);
-  speed_742.innerHTML = speed.speed_742.speed.toFixed(2);
-  speed_apa.innerHTML = speed.speed_Apa.speed.toFixed(2);
-  speed_beh.innerHTML = speed.speed_Beh.speed.toFixed(2);
-  speed_duration_700.innerHTML = speed.speed_700.duration;
-  speed_duration_742.innerHTML = speed.speed_742.duration;
-  speed_duration_apa.innerHTML = speed.speed_Apa.duration;
-  speed_duration_beh.innerHTML = speed.speed_Beh.duration;
-
-  const { data: lab } = await axios.post("/report/lab", { start_at, pile });
-  if (!lab) {
-    refreshPage();
-  }
-  //   separation
-  last_sample.innerHTML = lab.last_sample;
-  pile_Fe.innerHTML = Number(lab.average.fe).toFixed(2);
-  pile_M.innerHTML = Number(lab.average.m).toFixed(2);
-  pile_FeO.innerHTML = Number(lab.average.feo).toFixed(2);
-  pile_P.innerHTML = Number(lab.average.p).toFixed(3);
-
-  const { data: mis } = await axios.post("/report/mis", { start_at, pile });
-  if (!mis) {
-    refreshPage();
-  }
-  for (let i = 0; i < mis.stop_start.length; i++) {
-    if (mis.stop_start[i].reason_id == "113") {
-      truck_stop.innerHTML = mis.stop_start[i].sumduration;
-    } else if (mis.stop_start[i].reason_id == "121") {
-      shovel_stop.innerHTML = mis.stop_start[i].sumduration;
-    }
-  }
-  active_cr.innerHTML = "CR-1 & CR-2";
-  let cr1_tonnage =
-    mis.additional_info.day_yard_tonnage_old +
-    mis.additional_info.night_yard_tonnage_old;
-  let cr2_tonnage =
-    mis.additional_info.day_yard_tonnage +
-    mis.additional_info.night_yard_tonnage;
-
-  if (cr1_tonnage == 0) {
-    active_cr.innerHTML = "CR-2";
-  }
-  if (cr2_tonnage == 0) {
-    active_cr.innerHTML = "CR-1";
-  }
-  if (cr1_tonnage + cr2_tonnage == 0) {
-    active_cr.innerHTML = "-";
-  }
-  crusher_stop.innerHTML = mis.sum.total_duration;
   countDown(58);
-  setTimeout(() => {
     search.disabled = false;
-  }, 60000);
   search.disabled = true;
   search.classList.toggle("d-none");
   loading.classList.toggle("d-none");
   message_success.classList.toggle("d-none");
   span_counter.classList.remove("d-none");
+},61000)
+//! ********************************************
+  
 });
 
 saha_btn.addEventListener("click", () => {

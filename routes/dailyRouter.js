@@ -21,6 +21,8 @@ router.post("/abroft",Report.abroft);
 router.post("/pile",Report.pile);
 router.post("/samples",Report.semple);
 router.post("/trips",Report.trips);
+router.post("/fuel",Report.fuel);
+router.post("/all-fuel",Report.allFuel);
 
 
 export default router;
