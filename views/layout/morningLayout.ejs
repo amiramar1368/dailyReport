@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>گزارش هفتگی مدیریتی</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link rel="stylesheet" href="/css/jalali.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+    <style>
+      #message,
+      #success-message {
+        font-size: 15px;
+        margin: 10px;
+      }
+      #div-form {
+        text-align: right;
+        margin: 20px 20px 5px 20px;
+      }
+      #time-counter {
+        margin: 5px;
+        font-size: 12px;
+      }
+      input {
+        line-height: 2.3rem;
+        border-radius: 7px;
+        border: 1px solid #ccc9c9;
+      }
+      #search {
+        background-color: #007bff;
+        color: aliceblue;
+        cursor: pointer;
+        width: 160px;
+      }
+      #search:hover {
+        opacity: 0.9;
+      }
+      label{
+        margin-right: 10px;
+        cursor: pointer;
+      }
+      #just-lab{
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body dir="rtl">
+    <div id="div-form">
+      <form id="morning-report-form" enctype="multipart/form-data">
+        <input
+          type="text"
+          id="workday"
+          data-jdp
+          data-jdp-max-date="today"
+          placeholder=""
+          required
+        />
+        <input type="number"  id="mofid-700" placeholder="700" style="width: 50px;" value="19">
+        <input type="number"  id="mofid-742" placeholder="742" style="width: 50px;" value="14.5" step="0.5">
+        <input type="number"  id="mofid-apadana" placeholder="AP" style="width: 50px;" value="17">
+        <input type="submit" value="دریافت گزارش" id="search" />
+        <button dir="rtl" id="loading" class="d-none btn btn-primary" disabled>
+          لطفا منتظر بمانید
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+        </button>
+      </form>
+      
+    </div>
+    <hr />
+    <%-body%>
+  </body>
+  <script src="js/axios.js"></script>
+  <script src="/js/morning.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jalali.js"></script>
+  <script>
+    jalaliDatepicker.startWatch({
+      minDate: "attr",
+      maxDate: "attr",
+    });
+  </script>
+</html>
